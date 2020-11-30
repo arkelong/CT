@@ -1,5 +1,5 @@
-//ä½¿ç”¨é€’å½’ä¸‹é™åˆ†ææ³•
-//å¤´æ–‡ä»¶
+//Ê¹ÓÃµİ¹éÏÂ½µ·ÖÎö·¨
+//Í·ÎÄ¼ş
 #include <iostream>
 #include <map>
 #include <algorithm>
@@ -7,21 +7,21 @@
 #include <vector>
 using namespace std;
 
-string in;//è¾“å…¥
-//è¯æ³•åˆ†æ
-string instr;//è¾“å…¥ç¬¦å·ä¸²
-int index;//å½“å‰è¾“å…¥ç¬¦å·è¯»å…¥å­—ç¬¦çš„ä½ç½®
-char character;//å…¨å±€å˜é‡å­—ç¬¦ï¼Œå­˜æ”¾æœ€æ–°è¯»å…¥çš„å­—ç¬¦
-string token;//å­—ç¬¦æ•°ç»„ï¼Œå­˜æ”¾å·²è¯»å…¥çš„å­—ç¬¦åºåˆ—
+string in;//ÊäÈë
+//´Ê·¨·ÖÎö
+string instr;//ÊäÈë·ûºÅ´®
+int index;//µ±Ç°ÊäÈë·ûºÅ¶ÁÈë×Ö·ûµÄÎ»ÖÃ
+char character;//È«¾Ö±äÁ¿×Ö·û£¬´æ·Å×îĞÂ¶ÁÈëµÄ×Ö·û
+string token;//×Ö·ûÊı×é£¬´æ·ÅÒÑ¶ÁÈëµÄ×Ö·ûĞòÁĞ
 
-map<string, int> Symbol;//æœªå®šä¹‰æ ‡è¯†ç¬¦è¡¨<æ ‡è¯†ç¬¦,mapä¸­æ‰€åœ¨ä¸‹æ ‡>
-map<string, int> DefSymbol;//å·²å®šä¹‰æ ‡è¯†ç¬¦è¡¨
-map<string, int> Digit;//å¸¸æ•°è¡¨
+map<string, int> Symbol;//Î´¶¨Òå±êÊ¶·û±í<±êÊ¶·û,mapÖĞËùÔÚÏÂ±ê>
+map<string, int> DefSymbol;//ÒÑ¶¨Òå±êÊ¶·û±í
+map<string, int> Digit;//³£Êı±í
 map<string, int>::iterator it;
 const int len = 50;
-string Reserve[len];//ä¿ç•™å­—è¡¨
-string Operator[2 * len];//è¿ç®—ç¬¦
-string Boundary[3 * len];//ç•Œç¬¦
+string Reserve[len];//±£Áô×Ö±í
+string Operator[2 * len];//ÔËËã·û
+string Boundary[3 * len];//½ç·û
 struct Binary {
 	Binary(int c, int i, string v = "-") {
 		category = c;
@@ -29,15 +29,15 @@ struct Binary {
 		value = v;
 	}
 	Binary() {}
-	int category = 0;//ç±»åˆ«
-	int index = 0;//å¯¹åº”æ ‡è¯†ç¬¦åœ¨æ ‡è¯†ç¬¦è¡¨ä½ç½®æˆ–å¸¸æ•°å€¼åœ¨å¸¸æ•°è¡¨çš„ä½ç½®
-	string value = "-";//æ ‡è¯†ç¬¦æˆ–å¸¸æ•°å€¼
+	int category = 0;//Àà±ğ
+	int index = 0;//¶ÔÓ¦±êÊ¶·ûÔÚ±êÊ¶·û±íÎ»ÖÃ»ò³£ÊıÖµÔÚ³£Êı±íµÄÎ»ÖÃ
+	string value = "-";//±êÊ¶·û»ò³£ÊıÖµ
 };
 
-struct Binary all[100];//æ‰€æœ‰å•è¯
-int ip;//æ‰€æœ‰å•è¯é›†ä¸‹æ ‡
+struct Binary all[100];//ËùÓĞµ¥´Ê
+int ip;//ËùÓĞµ¥´Ê¼¯ÏÂ±ê
 
-void init_Reserve() {//æ„é€ ä¿ç•™å­—è¡¨çš„å‡½æ•°
+void init_Reserve() {//¹¹Ôì±£Áô×Ö±íµÄº¯Êı
 	Reserve[1] = "main";
 	Reserve[2] = "var";
 	Reserve[3] = "integer";
@@ -53,7 +53,7 @@ void init_Reserve() {//æ„é€ ä¿ç•™å­—è¡¨çš„å‡½æ•°
 	Reserve[13] = "and";
 	Reserve[14] = "not";
 }
-void init_Operator() {//åˆå§‹åŒ–è¿ç®—ç¬¦è¡¨
+void init_Operator() {//³õÊ¼»¯ÔËËã·û±í
 	Operator[50] = ":=";
 	Operator[51] = "+";
 	Operator[52] = "-";
@@ -66,7 +66,7 @@ void init_Operator() {//åˆå§‹åŒ–è¿ç®—ç¬¦è¡¨
 	Operator[59] = "==";
 	Operator[60] = "!=";
 }
-void init_Boundary() {//ç•Œç¬¦è¡¨åˆå§‹åŒ–
+void init_Boundary() {//½ç·û±í³õÊ¼»¯
 	Boundary[100] = "(";
 	Boundary[101] = ")";
 	Boundary[102] = ",";
@@ -77,56 +77,56 @@ void init_Boundary() {//ç•Œç¬¦è¡¨åˆå§‹åŒ–
 	Boundary[107] = "#";
 }
 
-void getChar() {//è¯»å…¥ä¸€ä¸ªå­—ç¬¦
+void getChar() {//¶ÁÈëÒ»¸ö×Ö·û
 	character = instr[index++];
 }
-void getnbc() {//è¯»å…¥éç©ºç™½å­—ç¬¦
+void getnbc() {//¶ÁÈë·Ç¿Õ°××Ö·û
 	while (character == ' ') {
 		getChar();
 	}
 }
-void concat() {//è¿æ¥å­—ç¬¦ä¸²
+void concat() {//Á¬½Ó×Ö·û´®
 	token = token + character;
 }
-bool letter() {//åˆ¤æ–­æ˜¯å¦ä¸ºå­—æ¯
+bool letter() {//ÅĞ¶ÏÊÇ·ñÎª×ÖÄ¸
 	if ((character >= 'A' && character <= 'Z') || (character >= 'a' && character <= 'z'))
 		return true;
 	return false;
 }
-bool digit() {//åˆ¤æ–­æ˜¯å¦ä¸ºæ•°å­—
+bool digit() {//ÅĞ¶ÏÊÇ·ñÎªÊı×Ö
 	if (character >= '0' && character <= '9')
 		return true;
 	return false;
 }
-void retract() {//å›é€€å­—ç¬¦çš„å‡½æ•°
+void retract() {//»ØÍË×Ö·ûµÄº¯Êı
 	character = ' ';
 	index--;
 }
-int reserve() {//åŒ¹é…ä¿ç•™å­—ç¬¦
+int reserve() {//Æ¥Åä±£Áô×Ö·û
 	for (int i = 0; i < len; i++)
 		if (Reserve[i] == token)return i;
 	return -1;
 }
 string symbol() {
-	it = Symbol.find(token);//æŸ¥æ‰¾è¡¨ä¸­æ˜¯å¦å·²å­˜åœ¨è¯¥æ ‡è¯†ç¬¦
-	if (it != Symbol.end()) {//å­˜åœ¨
-		return it->first;//è¿”å›è¯¥æ ‡è¯†ç¬¦
+	it = Symbol.find(token);//²éÕÒ±íÖĞÊÇ·ñÒÑ´æÔÚ¸Ã±êÊ¶·û
+	if (it != Symbol.end()) {//´æÔÚ
+		return it->first;//·µ»Ø¸Ã±êÊ¶·û
 	}
-	else {//ä¸å­˜åœ¨
+	else {//²»´æÔÚ
 		Symbol[token] = Symbol.size();
 		return token;
 	}
 }
-bool defSymbol(string defSym,bool push) { //defSymè¡¨ç¤ºç¬¦ï¼›pushæ§åˆ¶æ˜¯å¦æ”¾å…¥å·²å®šä¹‰æ ‡è¯†ç¬¦è¡¨ä¸­
-	it = DefSymbol.find(defSym);//æŸ¥æ‰¾è¡¨ä¸­æ˜¯å¦å·²å­˜åœ¨è¯¥æ ‡è¯†ç¬¦
-	if (it != DefSymbol.end()) {//å­˜åœ¨
-		return true;//è¿”å›true
+bool defSymbol(string defSym,bool push) { //defSym±íÊ¾·û£»push¿ØÖÆÊÇ·ñ·ÅÈëÒÑ¶¨Òå±êÊ¶·û±íÖĞ
+	it = DefSymbol.find(defSym);//²éÕÒ±íÖĞÊÇ·ñÒÑ´æÔÚ¸Ã±êÊ¶·û
+	if (it != DefSymbol.end()) {//´æÔÚ
+		return true;//·µ»Øtrue
 	}
-	else {//ä¸å­˜åœ¨
-		if (push) {//æ”¾å…¥å·²å®šä¹‰æ ‡è¯†ç¬¦è¡¨ä¸­
+	else {//²»´æÔÚ
+		if (push) {//·ÅÈëÒÑ¶¨Òå±êÊ¶·û±íÖĞ
 			DefSymbol[defSym] = DefSymbol.size();
 		}
-		return false;//è¿”å›false
+		return false;//·µ»Øfalse
 	}
 }
 string constant() {
@@ -140,10 +140,10 @@ string constant() {
 	}
 }
 Binary error() {
-	cout << token << "\t-->\tè¯¥å•è¯ä¸å­˜åœ¨" << endl;
+	cout << token << "\t-->\t¸Ãµ¥´Ê²»´æÔÚ" << endl;
 	return Binary(0, 0);
 }
-//è¯æ³•åˆ†æå‡½æ•°ï¼Œé€ä¸ªè¯†åˆ«å•è¯
+//´Ê·¨·ÖÎöº¯Êı£¬Öğ¸öÊ¶±ğµ¥´Ê
 Binary LexAnalyze() {
 	token = "";
 	getChar();
@@ -203,18 +203,18 @@ Binary LexAnalyze() {
 	case'X':
 	case'Y':
 	case'Z':
-		while (letter() || digit()) {//ä¸ºå­—æ¯æˆ–æ•°å­—
-			concat();//è¿½åŠ åˆ°tokenæœ«å°¾
-			getChar();//è¯»å–ä¸‹ä¸€ä¸ªå­—ç¬¦
+		while (letter() || digit()) {//Îª×ÖÄ¸»òÊı×Ö
+			concat();//×·¼Óµ½tokenÄ©Î²
+			getChar();//¶ÁÈ¡ÏÂÒ»¸ö×Ö·û
 		}
-		retract();//å›é€€ä¸€ä¸ªå­—ç¬¦
-		num = reserve();//æŸ¥çœ‹ä¿ç•™å­—è¡¨
+		retract();//»ØÍËÒ»¸ö×Ö·û
+		num = reserve();//²é¿´±£Áô×Ö±í
 		if (num != -1) {
 			return Binary(num, 0,Reserve[num]);
 		}
 		else {
-			val = symbol();//æŸ¥çœ‹æ ‡è¯†ç¬¦è¡¨
-			return Binary(39, Symbol[val], val);//indexä»1å¼€å§‹
+			val = symbol();//²é¿´±êÊ¶·û±í
+			return Binary(39, Symbol[val], val);//index´Ó1¿ªÊ¼
 		}
 		break;
 	case'0':
@@ -227,36 +227,36 @@ Binary LexAnalyze() {
 	case'7':
 	case'8':
 	case'9':
-		while (digit()) {//ä¸ºæ•°å­—
+		while (digit()) {//ÎªÊı×Ö
 			concat();
 			getChar();
 		}
 		retract();
-		val = constant();//æŸ¥çœ‹å¸¸æ•°è¡¨
+		val = constant();//²é¿´³£Êı±í
 		return Binary(40, Digit[val], val);
 		break;
 	case'<':
 		getChar();
-		if (character == '=') return Binary(56, 0, Operator[56]);//è¿”å›<=ç¬¦å·
+		if (character == '=') return Binary(56, 0, Operator[56]);//·µ»Ø<=·ûºÅ
 		else {
 			retract();
-			return Binary(55, 0, Operator[55]);//è¿”å›<ç¬¦å·
+			return Binary(55, 0, Operator[55]);//·µ»Ø<·ûºÅ
 		}
 		break;
 	case'>':
 		getChar();
-		if (character == '=')return Binary(58, 0, Operator[58]);//è¿”å›>=ç¬¦å·
+		if (character == '=')return Binary(58, 0, Operator[58]);//·µ»Ø>=·ûºÅ
 		else {
 			retract();
-			return Binary(57, 0, Operator[57]);//è¿”å›>ç¬¦å·
+			return Binary(57, 0, Operator[57]);//·µ»Ø>·ûºÅ
 		}
 		break;
 	case'=':
 		getChar();
-		if (character == '=') return Binary(59, 0, Operator[59]);//è¿”å›==ç¬¦å·
+		if (character == '=') return Binary(59, 0, Operator[59]);//·µ»Ø==·ûºÅ
 		else {
 			retract();
-			return error();// é”™è¯¯
+			return error();// ´íÎó
 		}
 		break;
 	case'!':
@@ -311,22 +311,22 @@ Binary LexAnalyze() {
 }
 
 void show_table() {
-	cout << "\n==================" << "æ ‡è¯†ç¬¦" << "==================" << endl;
-	cout << "æ ‡è¯†ç¬¦\t\tç±»åˆ«ç¼–ç \tè¡¨ä¸­ä½ç½®" << endl;
+	cout << "\n==================" << "±êÊ¶·û" << "==================" << endl;
+	cout << "±êÊ¶·û\t\tÀà±ğ±àÂë\t±íÖĞÎ»ÖÃ" << endl;
 	for (it = DefSymbol.begin(); it != DefSymbol.end(); it++) {
 		if (it->first.size() >= 8)
 			cout << it->first << "\t39\t\t" << it->second << endl;
 		else
 			cout << it->first << "\t\t39\t\t" << it->second << endl;
 	}
-	cout << "\n==================" << "å¸¸æ•°è¡¨" << "==================" << endl;
-	cout << "å¸¸é‡å€¼\t\tç±»åˆ«ç¼–ç \tè¡¨ä¸­ä½ç½®" << endl;
+	cout << "\n==================" << "³£Êı±í" << "==================" << endl;
+	cout << "³£Á¿Öµ\t\tÀà±ğ±àÂë\t±íÖĞÎ»ÖÃ" << endl;
 	for (it = Digit.begin(); it != Digit.end(); it++) {
 		cout << it->first << "\t\t40\t\t" << it->second << endl;
 	}
 }
 
-ostream& operator<<(ostream& output, const Binary& B)//å¯¹Binaryçš„è¾“å‡º<<é‡è½½
+ostream& operator<<(ostream& output, const Binary& B)//¶ÔBinaryµÄÊä³ö<<ÖØÔØ
 {
 	output << "category: " << B.category << "    index: " << B.index << "    value: " << B.value;
 	return output;
@@ -335,12 +335,12 @@ ostream& operator<<(ostream& output, const Binary& B)//å¯¹Binaryçš„è¾“å‡º<<é‡è½
 
 
 
-//è¯­æ³•åˆ†æ
+//Óï·¨·ÖÎö
 
 
-//è¯­ä¹‰åˆ†æ
+//ÓïÒå·ÖÎö
 
-//å››å…ƒå¼
+//ËÄÔªÊ½
 struct Quadruple {
 	Quadruple(string o, string s = "_", string d = "_", string r = "0") {
 		opcode = o;
@@ -349,13 +349,13 @@ struct Quadruple {
 		result = r;
 	}
 	Quadruple(){}
-	string opcode;//æ“ä½œç 
-	string soperand;//æºæ“ä½œç 
-	string doperand;//ç›®çš„æ“ä½œç 
-	string result;//æ“ä½œç»“æœ
+	string opcode;//²Ù×÷Âë
+	string soperand;//Ô´²Ù×÷Âë
+	string doperand;//Ä¿µÄ²Ù×÷Âë
+	string result;//²Ù×÷½á¹û
 };
-map<string, Quadruple> Quadruples;//å››å…ƒå¼é›†
-int qid = 150;//å››å…ƒå¼é›†å››å…ƒå¼ä¸‹æ ‡,ä»£ç ç¼–å·
+map<string, Quadruple> Quadruples;//ËÄÔªÊ½¼¯
+int qid = 150;//ËÄÔªÊ½¼¯ËÄÔªÊ½ÏÂ±ê,´úÂë±àºÅ
 map<string, Quadruple>::iterator itQuad;
 
 int mid = 0;//M~
@@ -365,24 +365,24 @@ int nid = 0;//N~
 
 
 
-ostream& operator<<(ostream& output, const Quadruple& Q)//å¯¹Quadrupleçš„è¾“å‡º<<é‡è½½
+ostream& operator<<(ostream& output, const Quadruple& Q)//¶ÔQuadrupleµÄÊä³ö<<ÖØÔØ
 {
 	output << "opcode: " << Q.opcode << "    soperand: " << Q.soperand << "    doperand: " << Q.doperand << "     result:" << Q.result;
 	return output;
 }
 
-//è¯­æ³•åˆ†ææ ‘
+//Óï·¨·ÖÎöÊ÷
 typedef struct tree {
 	string data;
 	tree* next[10] = {NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL };
 	map<string, vector<string>> Attribute;
 }*ptree, tree;
-int tid = 1;//Tå˜é‡çš„ä¸‹æ ‡
-vector<string>::iterator itv;//å‘é‡è¿­ä»£å™¨
-map<string, vector<string>>::iterator itm;//å±æ€§è¿­ä»£å™¨
+int tid = 1;//T±äÁ¿µÄÏÂ±ê
+vector<string>::iterator itv;//ÏòÁ¿µü´úÆ÷
+map<string, vector<string>>::iterator itm;//ÊôĞÔµü´úÆ÷
 
 
-int ipp;//å•è¯è¡¨å½“å‰è¯­æ³•åˆ†æå•è¯ä¸‹æ ‡
+int ipp;//µ¥´Ê±íµ±Ç°Óï·¨·ÖÎöµ¥´ÊÏÂ±ê
 void Analysis();
 void P();
 void A(int pipt);
@@ -408,8 +408,8 @@ void Z(int pipt);
 void Z1(int pipt);
 void Q(int pipt);
 void W(int pipt);
-void traverse(ptree r) {//å‰åºéå†
-	cout << r->data << "\t\tå±æ€§ï¼š";
+void traverse(ptree r) {//Ç°Ğò±éÀú
+	cout << r->data << "\t\tÊôĞÔ£º";
 	for (itm = r->Attribute.begin(); itm != r->Attribute.end(); itm++) {
 		cout << itm->first<<": ";
 		for (itv = itm->second.begin(); itv != itm->second.end(); itv++) {
@@ -425,8 +425,8 @@ void traverse(ptree r) {//å‰åºéå†
 	}
 }
 
-ptree root = new tree;//æ ‘æ ¹èŠ‚ç‚¹
-ptree p = root;//åˆ›å»ºæ ‘ç”¨çš„ä¸­é—´å˜é‡
+ptree root = new tree;//Ê÷¸ù½Úµã
+ptree p = root;//´´½¨Ê÷ÓÃµÄÖĞ¼ä±äÁ¿
 
 
 
@@ -436,14 +436,14 @@ void Analysis() {
 }
 
 
-//â‘ æ‰€æœ‰æ–‡æ³•å‡½æ•°è¡¨ç¤ºï¼Œé€’å½’ä¸‹é™
+//¢ÙËùÓĞÎÄ·¨º¯Êı±íÊ¾£¬µİ¹éÏÂ½µ
 void P() {
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp++].category == 1 && all[ipp++].category==100 && all[ipp++].category==101) {//main()
 		ptree t1 = new tree;
 		t1->data = "main()";
 		p->next[pip++] = t1;
-		cout << "main()åŒ¹é…æˆåŠŸ" << endl;
+		cout << "main()Æ¥Åä³É¹¦" << endl;
 
 		ptree t2 = new tree;
 		t2->data = "A";
@@ -453,17 +453,17 @@ void P() {
 	else {
 		cout << "Perror2" << endl;
 	}
-	cout << "Péå†å®Œæˆ" << endl;
+	cout << "P±éÀúÍê³É" << endl;
 }
 void A(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 105) {//{
 		ptree t1 = new tree;
 		t1->data = "{";
 		p->next[pip++] = t1;
-		cout << "{åŒ¹é…æˆåŠŸ" << endl;
+		cout << "{Æ¥Åä³É¹¦" << endl;
 		ipp++;
 		
 		ptree t2 = new tree;
@@ -482,7 +482,7 @@ void A(int pipt) {
 			ptree t4 = new tree;
 			t4->data = "}";
 			p->next[pip++] = t4;
-			cout << "}åŒ¹é…æˆåŠŸ" << endl;
+			cout << "}Æ¥Åä³É¹¦" << endl;
 			ipp++;
 		}
 		else {
@@ -497,12 +497,12 @@ void A(int pipt) {
 void B(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 2) {//var
 		ptree t1 = new tree;
 		t1->data = "var";
 		p->next[pip++] = t1;
-		cout << "varåŒ¹é…æˆåŠŸ" << endl;
+		cout << "varÆ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -519,7 +519,7 @@ void B(int pipt) {
 void D(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 
 	ptree t1 = new tree;
 	t1->data = "X";
@@ -531,7 +531,7 @@ void D(int pipt) {
 		ptree t2 = new tree;
 		t2->data = ":";
 		p->next[pip++] = t2;
-		cout << ":åŒ¹é…æˆåŠŸ" << endl;
+		cout << ":Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t3 = new tree;
@@ -544,7 +544,7 @@ void D(int pipt) {
 			ptree t4 = new tree;
 			t4->data = ";";
 			p->next[pip++] = t4;
-			cout << ";åŒ¹é…æˆåŠŸ" << endl;
+			cout << ";Æ¥Åä³É¹¦" << endl;
 			ipp++;
 
 			
@@ -589,16 +589,16 @@ void D(int pipt) {
 void X(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 39) {
 		ptree t1 = new tree;
 		t1->data = all[ipp].value;
 		p->next[pip++] = t1;
-		cout <<all[ipp].value<< "åŒ¹é…æˆåŠŸ" << endl;
+		cout <<all[ipp].value<< "Æ¥Åä³É¹¦" << endl;
 
 		if (defSymbol(all[ipp].value, true)) {
-			cout << all[ipp].value << "é‡å¤å®šä¹‰äº†" << endl;
-			exit(-1);//ç›´æ¥é€€å‡ºç¨‹åº
+			cout << all[ipp].value << "ÖØ¸´¶¨ÒåÁË" << endl;
+			exit(-1);//Ö±½ÓÍË³ö³ÌĞò
 		}
 		ipp++;
 
@@ -617,12 +617,12 @@ void X(int pipt) {
 void X1(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 102) {//,
 		ptree t1 = new tree;
 		t1->data = ",";
 		p->next[pip++] = t1;
-		cout << ",åŒ¹é…æˆåŠŸ" << endl;
+		cout << ",Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -635,13 +635,13 @@ void X1(int pipt) {
 
 void Y(int pipt) {
 	p = p->next[pipt];
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 
 	if (all[ipp].category == 3) {//integer
 		ptree t1 = new tree;
 		t1->data = "integer";
 		p->next[pip++] = t1;
-		cout <<"integeråŒ¹é…æˆåŠŸ" << endl;
+		cout <<"integerÆ¥Åä³É¹¦" << endl;
 		ipp++;
 		vector<string> v;
 		v.push_back("integer");
@@ -652,7 +652,7 @@ void Y(int pipt) {
 		ptree t1 = new tree;
 		t1->data = "real";
 		p->next[pip++] = t1;
-		cout <<"realåŒ¹é…æˆåŠŸ" << endl;
+		cout <<"realÆ¥Åä³É¹¦" << endl;
 		ipp++;
 		vector<string> v;
 		v.push_back("real");
@@ -668,7 +668,7 @@ void Y(int pipt) {
 void G(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 
 	ptree t1 = new tree;
 	t1->data = "H";
@@ -681,16 +681,16 @@ void G(int pipt) {
 		ptree t2 = new tree;
 		t2->data = ";";
 		p->next[pip++] = t2;
-		cout <<";åŒ¹é…æˆåŠŸ" << endl;
+		cout <<";Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t3 = new tree;
 		t3->data = "M" + to_string(mid++);
 		p->next[pip++] = t3;
-		cout << t3->data << "æ·»åŠ æˆåŠŸ" << endl;
+		cout << t3->data << "Ìí¼Ó³É¹¦" << endl;
 		vector<string> v1;
 		v1.push_back(to_string(qid));
-		p->next[2]->Attribute["quad"] = v1;//M.quadä¸ºä¸Šä¸€ä»£ç ç¼–å·çš„ä¸‹ä¸€ä¸ªå€¼
+		p->next[2]->Attribute["quad"] = v1;//M.quadÎªÉÏÒ»´úÂë±àºÅµÄÏÂÒ»¸öÖµ
 
 		ptree t4 = new tree;
 		t4->data = "G";
@@ -702,7 +702,7 @@ void G(int pipt) {
 		v2.push_back(p->next[2]->Attribute["quad"].back());
 		p->next[0]->Attribute["next"] = v2;
 
-		p->Attribute["next"] = p->next[3]->Attribute["next"];//ä¸ŠG.next=ä¸‹G.next
+		p->Attribute["next"] = p->next[3]->Attribute["next"];//ÉÏG.next=ÏÂG.next
 
 	}
 	else {
@@ -716,7 +716,7 @@ void G(int pipt) {
 void H(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 39) {
 		ptree t1 = new tree;
 		t1->data = "I";
@@ -752,19 +752,19 @@ void H(int pipt) {
 void I(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	//if (all[ipp].category == 39){
 	if (defSymbol(all[ipp].value,false)) {
 		ptree t1 = new tree;
 		t1->data = all[ipp].value;
 		p->next[pip++] = t1;
-		cout << all[ipp].value << "åŒ¹é…æˆåŠŸ" << endl;
+		cout << all[ipp].value << "Æ¥Åä³É¹¦" << endl;
 		ipp++;
 		if (all[ipp].category == 50) {//:=
 			ptree t2 = new tree;
 			t2->data = ":=";
 			p->next[pip++] = t2;
-			cout << ":=åŒ¹é…æˆåŠŸ" << endl;
+			cout << ":=Æ¥Åä³É¹¦" << endl;
 			ipp++;
 
 			ptree t3 = new tree;
@@ -775,7 +775,7 @@ void I(int pipt) {
 		}
 	}
 	else {
-		cout << "Ierror:æ²¡æœ‰å®šä¹‰æ­¤æ ‡è¯†ç¬¦" << endl;
+		cout << "Ierror:Ã»ÓĞ¶¨Òå´Ë±êÊ¶·û" << endl;
 		return;
 	}
 
@@ -793,12 +793,12 @@ void I(int pipt) {
 void K(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 9) {//if
 		ptree t1 = new tree;
 		t1->data = "if";
 		p->next[pip++] = t1;
-		cout << "ifåŒ¹é…æˆåŠŸ" << endl;
+		cout << "ifÆ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -811,16 +811,16 @@ void K(int pipt) {
 			ptree t3 = new tree;
 			t3->data = "then";
 			p->next[pip++] = t3;
-			cout << "thenåŒ¹é…æˆåŠŸ" << endl;
+			cout << "thenÆ¥Åä³É¹¦" << endl;
 			ipp++;
 
 			ptree t4 = new tree;
 			t4->data = "M" + to_string(mid++);
 			p->next[pip++] = t4;
-			cout << t4->data << "æ·»åŠ æˆåŠŸ" << endl;
+			cout << t4->data << "Ìí¼Ó³É¹¦" << endl;
 			vector<string> v1;
 			v1.push_back(to_string(qid));
-			p->next[3]->Attribute["quad"] = v1;//M.quadä¸ºä¸Šä¸€ä»£ç ç¼–å·çš„ä¸‹ä¸€ä¸ªå€¼
+			p->next[3]->Attribute["quad"] = v1;//M.quadÎªÉÏÒ»´úÂë±àºÅµÄÏÂÒ»¸öÖµ
 
 			ptree t5 = new tree;
 			t5->data = "H";
@@ -835,25 +835,25 @@ void K(int pipt) {
 				K1(pip - 1);
 				p = t;
 
-				//æœ‰elseçš„éƒ¨åˆ†
-				//å›å¡«M1.quad
-				itQuad = Quadruples.find(p->next[1]->Attribute["true"].back());//Rçš„trueå››å…ƒç»„
-				itQuad->second.result = p->next[3]->Attribute["quad"].back();//M1.quadå›å¡«
+				//ÓĞelseµÄ²¿·Ö
+				//»ØÌîM1.quad
+				itQuad = Quadruples.find(p->next[1]->Attribute["true"].back());//RµÄtrueËÄÔª×é
+				itQuad->second.result = p->next[3]->Attribute["quad"].back();//M1.quad»ØÌî
 
-				//å›å¡«M2.quad
-				itQuad = Quadruples.find(p->next[1]->Attribute["false"].back());//Rçš„falseå››å…ƒå¼
-				itQuad->second.result = p->next[5]->next[2]->Attribute["quad"].back();//M2.quadå›å¡«
+				//»ØÌîM2.quad
+				itQuad = Quadruples.find(p->next[1]->Attribute["false"].back());//RµÄfalseËÄÔªÊ½
+				itQuad->second.result = p->next[5]->next[2]->Attribute["quad"].back();//M2.quad»ØÌî
 
 				//K.next
 				vector<string> v;
-				//H1çš„next
+				//H1µÄnext
 				vector<string> vt1 = p->next[4]->Attribute["next"];
 				for (itv = vt1.begin(); itv != vt1.end(); itv++) {
 					v.push_back(*itv);
 				}
-				//Nçš„next
+				//NµÄnext
 				v.push_back(p->next[5]->next[0]->Attribute["next"].back());
-				//H2çš„next
+				//H2µÄnext
 				vector<string> vt2 = p->next[5]->next[3]->Attribute["next"];
 				for (itv = vt2.begin(); itv != vt2.end(); itv++) {
 					v.push_back(*itv);
@@ -862,25 +862,25 @@ void K(int pipt) {
 
 			}
 			else {
-				//å›å¡«
-				itQuad = Quadruples.find(p->next[1]->Attribute["true"].back());//Rä¸ºtrueçš„
-				itQuad->second.result = p->next[3]->Attribute["quad"].back();//M.quadå›å¡«
+				//»ØÌî
+				itQuad = Quadruples.find(p->next[1]->Attribute["true"].back());//RÎªtrueµÄ
+				itQuad->second.result = p->next[3]->Attribute["quad"].back();//M.quad»ØÌî
 
 				vector<string> v;
-				vector<string> vt1 = p->next[1]->Attribute["false"];//Rä¸ºfalseçš„å››å…ƒç»„
+				vector<string> vt1 = p->next[1]->Attribute["false"];//RÎªfalseµÄËÄÔª×é
 				for (itv = vt1.begin(); itv != vt1.end(); itv++) {
 					v.push_back(*itv);
 				}
-				vector<string> vt2 = p->next[4]->Attribute["next"];//Hçš„next
+				vector<string> vt2 = p->next[4]->Attribute["next"];//HµÄnext
 				for (itv = vt2.begin(); itv != vt2.end(); itv++) {
 					v.push_back(*itv);
 				}
-				p->Attribute["next"] = v; //K.nextå±æ€§
+				p->Attribute["next"] = v; //K.nextÊôĞÔ
 
 			}
 		}
 		else {
-			cout << "Kerror1:æ²¡æœ‰then" << endl;
+			cout << "Kerror1:Ã»ÓĞthen" << endl;
 
 		}
 	}
@@ -892,34 +892,34 @@ void K(int pipt) {
 void K1(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	
 	if (all[ipp].category == 11) {//else
 								  
 		ptree t1 = new tree;
 		t1->data = "N" + to_string(nid++);
 		p->next[pip++] = t1;
-		cout << t1->data << "æ·»åŠ æˆåŠŸ" << endl;
+		cout << t1->data << "Ìí¼Ó³É¹¦" << endl;
 		vector<string> v1;
 		v1.push_back(to_string(qid));
-		p->next[0]->Attribute["next"] = v1;//N.nextï¼Œè®°å½•æ— æ¡ä»¶è·³è½¬ï¼Œç”¨æ¥ç›´æ¥è·³è¿‡H2
-		//æ— æ¡ä»¶è·³è½¬è¯­å¥
+		p->next[0]->Attribute["next"] = v1;//N.next£¬¼ÇÂ¼ÎŞÌõ¼şÌø×ª£¬ÓÃÀ´Ö±½ÓÌø¹ıH2
+		//ÎŞÌõ¼şÌø×ªÓï¾ä
 		Quadruple quad("J");
 		Quadruples[to_string(qid++)] = quad;
 
 		ptree t2 = new tree;
 		t2->data = "else";
 		p->next[pip++] = t2;
-		cout << "elseåŒ¹é…æˆåŠŸ" << endl;
+		cout << "elseÆ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t3 = new tree;
 		t3->data = "M" + to_string(mid++);
 		p->next[pip++] = t3;
-		cout << t3->data << "æ·»åŠ æˆåŠŸ" << endl;
+		cout << t3->data << "Ìí¼Ó³É¹¦" << endl;
 		vector<string> v2;
 		v2.push_back(to_string(qid));
-		p->next[2]->Attribute["quad"] = v2;//M.quadä¸ºä¸Šä¸€ä»£ç ç¼–å·çš„ä¸‹ä¸€ä¸ªå€¼
+		p->next[2]->Attribute["quad"] = v2;//M.quadÎªÉÏÒ»´úÂë±àºÅµÄÏÂÒ»¸öÖµ
 
 		ptree t4 = new tree;
 		t4->data = "H";
@@ -935,22 +935,22 @@ void K1(int pipt) {
 void L(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 
 	if (all[ipp].category == 7) {//while
 		ptree t1 = new tree;
 		t1->data = "while";
 		p->next[pip++] = t1;
-		cout <<"whileåŒ¹é…æˆåŠŸ" << endl;
+		cout <<"whileÆ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
 		t2->data = "M" + to_string(mid++);
 		p->next[pip++] = t2;
-		cout << t2->data << "æ·»åŠ æˆåŠŸ" << endl;
+		cout << t2->data << "Ìí¼Ó³É¹¦" << endl;
 		vector<string> v1;
 		v1.push_back(to_string(qid));
-		p->next[1]->Attribute["quad"] = v1;//M1.quadä¸ºä¸Šä¸€ä»£ç ç¼–å·çš„ä¸‹ä¸€ä¸ªå€¼
+		p->next[1]->Attribute["quad"] = v1;//M1.quadÎªÉÏÒ»´úÂë±àºÅµÄÏÂÒ»¸öÖµ
 		
 		
 
@@ -964,16 +964,16 @@ void L(int pipt) {
 			ptree t4 = new tree;
 			t4->data = "do";
 			p->next[pip++] = t4;
-			cout << "doåŒ¹é…æˆåŠŸ" << endl;
+			cout << "doÆ¥Åä³É¹¦" << endl;
 			ipp++;
 
 			ptree t5 = new tree;
 			t5->data = "M" + to_string(mid++);
 			p->next[pip++] = t5;
-			cout << t5->data << "æ·»åŠ æˆåŠŸ" << endl;
+			cout << t5->data << "Ìí¼Ó³É¹¦" << endl;
 			vector<string> v2;
 			v2.push_back(to_string(qid));
-			p->next[4]->Attribute["quad"] = v2;//M2.quadä¸ºä¸Šä¸€ä»£ç ç¼–å·çš„ä¸‹ä¸€ä¸ªå€¼
+			p->next[4]->Attribute["quad"] = v2;//M2.quadÎªÉÏÒ»´úÂë±àºÅµÄÏÂÒ»¸öÖµ
 
 			ptree t6 = new tree;
 			t6->data = "H";
@@ -981,20 +981,20 @@ void L(int pipt) {
 			H(pip - 1);
 			p = t;
 
-			//Rä¸ºfalseæ—¶
+			//RÎªfalseÊ±
 			p->Attribute["next"] = p->next[2]->Attribute["false"];
 
-			//å›å¡«
-			itQuad = Quadruples.find(p->next[2]->Attribute["true"].back());//Rä¸ºtrueçš„å››å…ƒç»„ä»£ç ç¼–å·
-			itQuad->second.result = p->next[4]->Attribute["quad"].back();//M2.quadå€¼å›å¡«
+			//»ØÌî
+			itQuad = Quadruples.find(p->next[2]->Attribute["true"].back());//RÎªtrueµÄËÄÔª×é´úÂë±àºÅ
+			itQuad->second.result = p->next[4]->Attribute["quad"].back();//M2.quadÖµ»ØÌî
 
-			//æ·»åŠ å››å…ƒå¼,æ— æ¡ä»¶è·³è½¬
+			//Ìí¼ÓËÄÔªÊ½,ÎŞÌõ¼şÌø×ª
 			Quadruple quad("J", "_", "_", p->next[1]->Attribute["quad"].back());//emit("J","_","_",M1.quad)
 			Quadruples[to_string(qid++)] = quad;
 
 		}
 		else {
-			cout << "Lerror:æ²¡æœ‰do" << endl;
+			cout << "Lerror:Ã»ÓĞdo" << endl;
 			exit(-1);
 		}
 	}
@@ -1003,7 +1003,7 @@ void L(int pipt) {
 void E(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	ptree t1 = new tree;
 	t1->data = "T";
 	p->next[pip++] = t1;
@@ -1016,15 +1016,15 @@ void E(int pipt) {
 	E1(pip - 1);
 	p = t;
 
-	//E1çš„å­èŠ‚ç‚¹ä¸ºç©º
+	//E1µÄ×Ó½ÚµãÎª¿Õ
 	if (p->next[1]->next[0] == NULL) {
 		p->Attribute["place"] = p->next[0]->Attribute["place"];
 	}
-	else {//E1çš„å­èŠ‚ç‚¹ä¸ä¸ºç©º
+	else {//E1µÄ×Ó½Úµã²»Îª¿Õ
 		vector<string> v;
 		v.push_back("T" + to_string(tid++));
 		p->Attribute["place"] = v;
-		//å››å…ƒå¼
+		//ËÄÔªÊ½
 		Quadruple quad(p->next[1]->next[0]->data, 
 			p->next[0]->Attribute["place"].back(), 
 			p->next[1]->Attribute["place"].back(), 
@@ -1039,12 +1039,12 @@ void E(int pipt) {
 void E1(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 51) {//+
 		ptree t1 = new tree;
 		t1->data = "+";
 		p->next[pip++] = t1;
-		cout <<"+åŒ¹é…æˆåŠŸ" << endl;
+		cout <<"+Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -1060,15 +1060,15 @@ void E1(int pipt) {
 		p = t;
 
 
-		if (p->next[2]->next[0] == NULL) {//E1å­èŠ‚ç‚¹ä¸ºç©º
+		if (p->next[2]->next[0] == NULL) {//E1×Ó½ÚµãÎª¿Õ
 			p->Attribute["place"] = p->next[1]->Attribute["place"];
 		}
-		else if(p->next[2]->next[2]->next[0]==NULL) {//æ­¤ä¸‹æ­¤ä¸‹E1å­èŠ‚ç‚¹ä¸ºç©º
+		else if(p->next[2]->next[2]->next[0]==NULL) {//´ËÏÂ´ËÏÂE1×Ó½ÚµãÎª¿Õ
 			vector<string> v;
 			v.push_back("T" + to_string(tid++));
-			p->Attribute["place"] = v;//è®¾ç½®placeå±æ€§
-			//ä¸‹è¾¹æå››å…ƒå¼
-			//ï¼ˆæ­¤ä¸‹E1ä¸‹+ï¼Œæ­¤ä¸‹Tçš„placeï¼Œæ­¤ä¸‹E1ä¸‹Tçš„placeï¼Œä¸­é—´å˜é‡T~ï¼‰//s:å·¦T,d:å³T
+			p->Attribute["place"] = v;//ÉèÖÃplaceÊôĞÔ
+			//ÏÂ±ß¸ãËÄÔªÊ½
+			//£¨´ËÏÂE1ÏÂ+£¬´ËÏÂTµÄplace£¬´ËÏÂE1ÏÂTµÄplace£¬ÖĞ¼ä±äÁ¿T~£©//s:×óT,d:ÓÒT
 			Quadruple quad(p->next[2]->next[0]->data,
 				p->next[1]->Attribute["place"].back(),
 				p->next[2]->next[1]->Attribute["place"].back(),
@@ -1078,9 +1078,9 @@ void E1(int pipt) {
 		else {
 			vector<string> v;
 			v.push_back("T" + to_string(tid++));
-			p->Attribute["place"] = v;//è®¾ç½®placeå±æ€§
-			//ä¸‹è¾¹æå››å…ƒå¼
-			//ï¼ˆæ­¤ä¸‹E1ä¸‹+ï¼Œæ­¤ä¸‹Tçš„placeï¼Œæ­¤ä¸‹E1çš„placeï¼Œä¸­é—´å˜é‡T~ï¼‰//s:å·¦T,d:å³T
+			p->Attribute["place"] = v;//ÉèÖÃplaceÊôĞÔ
+			//ÏÂ±ß¸ãËÄÔªÊ½
+			//£¨´ËÏÂE1ÏÂ+£¬´ËÏÂTµÄplace£¬´ËÏÂE1µÄplace£¬ÖĞ¼ä±äÁ¿T~£©//s:×óT,d:ÓÒT
 			Quadruple quad(p->next[2]->next[0]->data,
 				p->next[1]->Attribute["place"].back(),
 				p->next[2]->Attribute["place"].back(),
@@ -1092,7 +1092,7 @@ void E1(int pipt) {
 		ptree t1 = new tree;
 		t1->data = "-";
 		p->next[pip++] = t1;
-		cout <<"-åŒ¹é…æˆåŠŸ" << endl;
+		cout <<"-Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -1107,15 +1107,15 @@ void E1(int pipt) {
 		E1(pip - 1);
 		p = t;
 
-		if (p->next[2]->next[0] == NULL) {//E1å­èŠ‚ç‚¹ä¸ºç©º
+		if (p->next[2]->next[0] == NULL) {//E1×Ó½ÚµãÎª¿Õ
 			p->Attribute["place"] = p->next[1]->Attribute["place"];
 		}
-		else if(p->next[2]->next[2]->next[0]==NULL) {//æ­¤ä¸‹æ­¤ä¸‹E1å­èŠ‚ç‚¹ä¸ºç©º
+		else if(p->next[2]->next[2]->next[0]==NULL) {//´ËÏÂ´ËÏÂE1×Ó½ÚµãÎª¿Õ
 			vector<string> v;
 			v.push_back("T" + to_string(tid++));
-			p->Attribute["place"] = v ;//è®¾ç½®placeå±æ€§
-			//ä¸‹è¾¹æå››å…ƒå¼
-			//ï¼ˆæ­¤ä¸‹E1ä¸‹-ï¼Œæ­¤ä¸‹Tçš„placeï¼Œæ­¤ä¸‹E1ä¸‹Tçš„placeï¼Œä¸­é—´å˜é‡T~ï¼‰//s:å·¦T,d:å³T
+			p->Attribute["place"] = v ;//ÉèÖÃplaceÊôĞÔ
+			//ÏÂ±ß¸ãËÄÔªÊ½
+			//£¨´ËÏÂE1ÏÂ-£¬´ËÏÂTµÄplace£¬´ËÏÂE1ÏÂTµÄplace£¬ÖĞ¼ä±äÁ¿T~£©//s:×óT,d:ÓÒT
 			Quadruple quad(p->next[2]->next[0]->data,
 				p->next[1]->Attribute["place"].back(),
 				p->next[2]->next[1]->Attribute["place"].back(),
@@ -1125,9 +1125,9 @@ void E1(int pipt) {
 		else {
 			vector<string> v;
 			v.push_back("T" + to_string(tid++));
-			p->Attribute["place"] = v;//è®¾ç½®placeå±æ€§
-			//ä¸‹è¾¹æå››å…ƒå¼
-			//ï¼ˆæ­¤ä¸‹E1ä¸‹-ï¼Œæ­¤ä¸‹Tçš„placeï¼Œæ­¤ä¸‹E1çš„placeï¼Œä¸­é—´å˜é‡T~ï¼‰//s:å·¦T,d:å³T
+			p->Attribute["place"] = v;//ÉèÖÃplaceÊôĞÔ
+			//ÏÂ±ß¸ãËÄÔªÊ½
+			//£¨´ËÏÂE1ÏÂ-£¬´ËÏÂTµÄplace£¬´ËÏÂE1µÄplace£¬ÖĞ¼ä±äÁ¿T~£©//s:×óT,d:ÓÒT
 			Quadruple quad(p->next[2]->next[0]->data,
 				p->next[1]->Attribute["place"].back(),
 				p->next[2]->Attribute["place"].back(),
@@ -1140,7 +1140,7 @@ void E1(int pipt) {
 void T(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 
 	ptree t1 = new tree;
 	t1->data = "F";
@@ -1155,36 +1155,36 @@ void T(int pipt) {
 	p = t;
 
 
-	//è€ƒè™‘T1çš„å­èŠ‚ç‚¹ä¸ºç©ºçš„æƒ…å†µ
+	//¿¼ÂÇT1µÄ×Ó½ÚµãÎª¿ÕµÄÇé¿ö
 	if (p->next[1]->next[0] == NULL) {
 		p->Attribute["place"] = p->next[0]->Attribute["place"];
 	}
 	else {
-		//palceå±æ€§ä¸ºFå·¦å’ŒFå³çš„ä¸­é—´å˜é‡T*
+		//palceÊôĞÔÎªF×óºÍFÓÒµÄÖĞ¼ä±äÁ¿T*
 		vector<string> v;
 		v.push_back("T" + to_string(tid++));
 		p->Attribute["place"] = v;
-		//ä¸‹è¾¹æå››å…ƒå¼
+		//ÏÂ±ß¸ãËÄÔªÊ½
 		Quadruple quad(p->next[1]->next[0]->data, 
 			p->next[0]->Attribute["place"].back(), 
-			p->next[1]->Attribute["place"].back(), //T1æœ€æ ¹å¤„
+			p->next[1]->Attribute["place"].back(), //T1×î¸ù´¦
 			p->Attribute["place"].back());
 		
-		Quadruples[to_string(qid++)] = quad;//æ·»åŠ è¿›å››å…ƒå¼é›†
+		Quadruples[to_string(qid++)] = quad;//Ìí¼Ó½øËÄÔªÊ½¼¯
 	}
 
 	
 }
 
-void T1(int pipt) {//è€ƒè™‘T1å­èŠ‚ç‚¹ä¸ºç©ºï¼Œè€ƒè™‘é“¾å¼ä¹˜ï¼Œplaceå±æ€§åŒ–åˆ°æœ€æ ¹å¤„
+void T1(int pipt) {//¿¼ÂÇT1×Ó½ÚµãÎª¿Õ£¬¿¼ÂÇÁ´Ê½³Ë£¬placeÊôĞÔ»¯µ½×î¸ù´¦
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 53) {// *
 		ptree t1 = new tree;
 		t1->data = "*";
 		p->next[pip++] = t1;
-		cout << "*åŒ¹é…æˆåŠŸ" << endl;
+		cout << "*Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -1199,15 +1199,15 @@ void T1(int pipt) {//è€ƒè™‘T1å­èŠ‚ç‚¹ä¸ºç©ºï¼Œè€ƒè™‘é“¾å¼ä¹˜ï¼Œplaceå±æ€§åŒ–å
 		T1(pip - 1);
 		p = t;
 
-		if (p->next[2]->next[0] == NULL) {//T1å­èŠ‚ç‚¹ä¸ºç©º
+		if (p->next[2]->next[0] == NULL) {//T1×Ó½ÚµãÎª¿Õ
 			p->Attribute["place"] = p->next[1]->Attribute["place"];
 		}
-		else if(p->next[2]->next[2]->next[0] == NULL) {//æ­¤ä¸‹æ­¤ä¸‹T1å­èŠ‚ç‚¹ä¸ºç©º
+		else if(p->next[2]->next[2]->next[0] == NULL) {//´ËÏÂ´ËÏÂT1×Ó½ÚµãÎª¿Õ
 			vector<string> v;
 			v.push_back("T" + to_string(tid++));
-			p->Attribute["place"] = v;//è®¾ç½®placeå±æ€§
-			//ä¸‹è¾¹æå››å…ƒå¼
-			//ï¼ˆæ­¤ä¸‹T1ä¸‹*ï¼Œæ­¤ä¸‹Fçš„placeï¼Œæ­¤ä¸‹T1ä¸‹Fçš„placeï¼Œä¸­é—´å˜é‡T~ï¼‰//s:å·¦F,d:å³F
+			p->Attribute["place"] = v;//ÉèÖÃplaceÊôĞÔ
+			//ÏÂ±ß¸ãËÄÔªÊ½
+			//£¨´ËÏÂT1ÏÂ*£¬´ËÏÂFµÄplace£¬´ËÏÂT1ÏÂFµÄplace£¬ÖĞ¼ä±äÁ¿T~£©//s:×óF,d:ÓÒF
 			Quadruple quad(p->next[2]->next[0]->data, 
 				p->next[1]->Attribute["place"].back(), 
 				p->next[2]->next[1]->Attribute["place"].back(), 
@@ -1217,9 +1217,9 @@ void T1(int pipt) {//è€ƒè™‘T1å­èŠ‚ç‚¹ä¸ºç©ºï¼Œè€ƒè™‘é“¾å¼ä¹˜ï¼Œplaceå±æ€§åŒ–å
 		else {
 			vector<string> v;
 			v.push_back("T" + to_string(tid++));
-			p->Attribute["place"] = v;//è®¾ç½®placeå±æ€§
-			//ä¸‹è¾¹æå››å…ƒå¼
-			//ï¼ˆæ­¤ä¸‹T1ä¸‹*ï¼Œæ­¤ä¸‹Fçš„placeï¼Œæ­¤ä¸‹T1çš„placeï¼Œä¸­é—´å˜é‡T~ï¼‰//s:å·¦F,d:å³F
+			p->Attribute["place"] = v;//ÉèÖÃplaceÊôĞÔ
+			//ÏÂ±ß¸ãËÄÔªÊ½
+			//£¨´ËÏÂT1ÏÂ*£¬´ËÏÂFµÄplace£¬´ËÏÂT1µÄplace£¬ÖĞ¼ä±äÁ¿T~£©//s:×óF,d:ÓÒF
 			Quadruple quad(p->next[2]->next[0]->data,
 				p->next[1]->Attribute["place"].back(),
 				p->next[2]->Attribute["place"].back(),
@@ -1232,7 +1232,7 @@ void T1(int pipt) {//è€ƒè™‘T1å­èŠ‚ç‚¹ä¸ºç©ºï¼Œè€ƒè™‘é“¾å¼ä¹˜ï¼Œplaceå±æ€§åŒ–å
 		ptree t1 = new tree;
 		t1->data = "/";
 		p->next[pip++] = t1;
-		cout << "/åŒ¹é…æˆåŠŸ" << endl;
+		cout << "/Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -1248,15 +1248,15 @@ void T1(int pipt) {//è€ƒè™‘T1å­èŠ‚ç‚¹ä¸ºç©ºï¼Œè€ƒè™‘é“¾å¼ä¹˜ï¼Œplaceå±æ€§åŒ–å
 		T1(pip - 1);
 		p = t;
 
-		if (p->next[2]->next[0] == NULL) {//T1å­èŠ‚ç‚¹ä¸ºç©º
+		if (p->next[2]->next[0] == NULL) {//T1×Ó½ÚµãÎª¿Õ
 			p->Attribute["place"] = p->next[1]->Attribute["place"];
 		}
-		else if(p->next[2]->next[2]->next[0] == NULL){//æ­¤ä¸‹æ­¤ä¸‹T1èŠ‚ç‚¹ä¸ºç©º
+		else if(p->next[2]->next[2]->next[0] == NULL){//´ËÏÂ´ËÏÂT1½ÚµãÎª¿Õ
 			vector<string> v;
 			v.push_back("T" + to_string(tid++));
-			p->Attribute["place"] = v;//è®¾ç½®placeå±æ€§
-			//ä¸‹è¾¹æå››å…ƒå¼
-			//ï¼ˆæ­¤ä¸‹T1ä¸‹/ï¼Œæ­¤ä¸‹Fçš„placeï¼Œæ­¤ä¸‹T1ä¸‹Fçš„placeï¼Œä¸­é—´å˜é‡T~ï¼‰//s:å·¦F,d:å³F
+			p->Attribute["place"] = v;//ÉèÖÃplaceÊôĞÔ
+			//ÏÂ±ß¸ãËÄÔªÊ½
+			//£¨´ËÏÂT1ÏÂ/£¬´ËÏÂFµÄplace£¬´ËÏÂT1ÏÂFµÄplace£¬ÖĞ¼ä±äÁ¿T~£©//s:×óF,d:ÓÒF
 			Quadruple quad(p->next[2]->next[0]->data,
 				p->next[1]->Attribute["place"].back(),
 				p->next[2]->next[1]->Attribute["place"].back(),
@@ -1266,9 +1266,9 @@ void T1(int pipt) {//è€ƒè™‘T1å­èŠ‚ç‚¹ä¸ºç©ºï¼Œè€ƒè™‘é“¾å¼ä¹˜ï¼Œplaceå±æ€§åŒ–å
 		else {
 			vector<string> v;
 			v.push_back("T" + to_string(tid++));
-			p->Attribute["place"] = v;//è®¾ç½®placeå±æ€§
-			//ä¸‹è¾¹æå››å…ƒå¼
-			//ï¼ˆæ­¤ä¸‹T1ä¸‹/ï¼Œæ­¤ä¸‹Fçš„placeï¼Œæ­¤ä¸‹T1çš„placeï¼Œä¸­é—´å˜é‡T~ï¼‰//s:å·¦F,d:å³F
+			p->Attribute["place"] = v;//ÉèÖÃplaceÊôĞÔ
+			//ÏÂ±ß¸ãËÄÔªÊ½
+			//£¨´ËÏÂT1ÏÂ/£¬´ËÏÂFµÄplace£¬´ËÏÂT1µÄplace£¬ÖĞ¼ä±äÁ¿T~£©//s:×óF,d:ÓÒF
 			Quadruple quad(p->next[2]->next[0]->data,
 				p->next[1]->Attribute["place"].back(),
 				p->next[2]->Attribute["place"].back(),
@@ -1281,16 +1281,16 @@ void T1(int pipt) {//è€ƒè™‘T1å­èŠ‚ç‚¹ä¸ºç©ºï¼Œè€ƒè™‘é“¾å¼ä¹˜ï¼Œplaceå±æ€§åŒ–å
 void F(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	
-	if (defSymbol(all[ipp].value, false) || all[ipp].category == 40) {//åŒ¹é…æ ‡è¯†ç¬¦æˆ–å¸¸æ•°
-		ptree t1 = new tree;//åˆ›å»ºèŠ‚ç‚¹
+	if (defSymbol(all[ipp].value, false) || all[ipp].category == 40) {//Æ¥Åä±êÊ¶·û»ò³£Êı
+		ptree t1 = new tree;//´´½¨½Úµã
 		t1->data = all[ipp].value;
 		p->next[pip++] = t1;
-		cout << all[ipp].value << "åŒ¹é…æˆåŠŸ" << endl;
+		cout << all[ipp].value << "Æ¥Åä³É¹¦" << endl;
 		vector<string> v;
 		v.push_back(all[ipp].value);
-		p->Attribute["place"] = v;//è®¾ç½®placeå±æ€§
+		p->Attribute["place"] = v;//ÉèÖÃplaceÊôĞÔ
 
 		ipp++;
 
@@ -1298,7 +1298,7 @@ void F(int pipt) {
 		ptree t1 = new tree;
 		t1->data = "(";
 		p->next[pip++] = t1;
-		cout << "(åŒ¹é…æˆåŠŸ" << endl;
+		cout << "(Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -1313,24 +1313,24 @@ void F(int pipt) {
 			ptree t3 = new tree;
 			t3->data = ")";
 			p->next[pip++] = t3;
-			cout << ")åŒ¹é…æˆåŠŸ" << endl;
+			cout << ")Æ¥Åä³É¹¦" << endl;
 			ipp++;
 		}
 		else {
-			cout << "Ferror1:æ²¡æœ‰ ) " << endl;
+			cout << "Ferror1:Ã»ÓĞ ) " << endl;
 			return;
 		}
 
 	}
 	else {
-		cout << "Ferror2ï¼šæ²¡æœ‰å®šä¹‰æ­¤æ ‡è¯†ç¬¦" << endl;
+		cout << "Ferror2£ºÃ»ÓĞ¶¨Òå´Ë±êÊ¶·û" << endl;
 	}
 }
 
 void R(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 
 	ptree t1 = new tree;
 	t1->data = "Z";
@@ -1344,52 +1344,52 @@ void R(int pipt) {
 	R1(pip - 1);
 	p = t;
 
-	if (p->next[1]->next[0] == NULL) {//æ­¤èŠ‚ç‚¹çš„R1å­èŠ‚ç‚¹nextä¸ºç©º
+	if (p->next[1]->next[0] == NULL) {//´Ë½ÚµãµÄR1×Ó½ÚµãnextÎª¿Õ
 		p->Attribute["true"] = p->next[0]->Attribute["true"];
 		p->Attribute["false"] = p->next[0]->Attribute["false"];
 
 	}
-	else if(p->next[1]->next[3]->next[0] == NULL){//æ­¤èŠ‚ç‚¹æ­¤ä¸‹R1å­èŠ‚ç‚¹nextä¸ºç©º
+	else if(p->next[1]->next[3]->next[0] == NULL){//´Ë½Úµã´ËÏÂR1×Ó½ÚµãnextÎª¿Õ
 
-		//R.falseçš„æƒ…å†µ
+		//R.falseµÄÇé¿ö
 		p->Attribute["false"] = p->next[1]->next[2]->Attribute["false"];//R.false=Z2.false
 
-		//R.trueçš„æƒ…å†µ
+		//R.trueµÄÇé¿ö
 		vector<string> v2;
-		vector<string> vt1 = p->next[0]->Attribute["true"];//Z1çš„trueè·³è½¬ä»£ç ç¼–å·å‘é‡
+		vector<string> vt1 = p->next[0]->Attribute["true"];//Z1µÄtrueÌø×ª´úÂë±àºÅÏòÁ¿
 		for (itv = vt1.begin(); itv != vt1.end(); itv++) {
 			v2.push_back(*itv);
 		}
-		vector<string> vt2 = p->next[1]->next[2]->Attribute["true"];//Z2çš„trueè·³è½¬ä»£ç ç¼–å·å‘é‡	
+		vector<string> vt2 = p->next[1]->next[2]->Attribute["true"];//Z2µÄtrueÌø×ª´úÂë±àºÅÏòÁ¿	
 		for (itv = vt2.begin(); itv != vt2.end(); itv++) {
 			v2.push_back(*itv);
 		}
-		p->Attribute["true"] = v2;//é“¾æ¥
+		p->Attribute["true"] = v2;//Á´½Ó
 
-		//å›å¡«
-		itQuad = Quadruples.find(p->next[0]->Attribute["false"].back());//Z1çš„falseçš„å››å…ƒå¼
-		itQuad->second.result = p->next[1]->next[1]->Attribute["quad"].back();//Mçš„quadå±æ€§å€¼å›å¡«åˆ°Q1çš„trueçš„result
+		//»ØÌî
+		itQuad = Quadruples.find(p->next[0]->Attribute["false"].back());//Z1µÄfalseµÄËÄÔªÊ½
+		itQuad->second.result = p->next[1]->next[1]->Attribute["quad"].back();//MµÄquadÊôĞÔÖµ»ØÌîµ½Q1µÄtrueµÄresult
 
 	}
 	else {
-		//R.falseçš„æƒ…å†µ
+		//R.falseµÄÇé¿ö
 		p->Attribute["false"] = p->next[1]->Attribute["false"];//R.false=R1.false
 
-		//R.trueçš„æƒ…å†µ
+		//R.trueµÄÇé¿ö
 		vector<string> v2;
-		vector<string> vt1 = p->next[0]->Attribute["true"]; //Z1çš„trueè·³è½¬ä»£ç ç¼–å·å‘é‡
+		vector<string> vt1 = p->next[0]->Attribute["true"]; //Z1µÄtrueÌø×ª´úÂë±àºÅÏòÁ¿
 		for (itv = vt1.begin(); itv != vt1.end(); itv++) {
 			v2.push_back(*itv);
 		}
-		vector<string> vt2 = p->next[1]->Attribute["true"]; //R1çš„trueè·³è½¬ä»£ç ç¼–å·å‘é‡
+		vector<string> vt2 = p->next[1]->Attribute["true"]; //R1µÄtrueÌø×ª´úÂë±àºÅÏòÁ¿
 		for (itv = vt2.begin(); itv != vt2.end(); itv++) {
 			v2.push_back(*itv);
 		}
 		p->Attribute["true"] = v2;
 
-		//å›å¡«
-		itQuad = Quadruples.find(p->next[0]->Attribute["false"].back());//Z1çš„falseçš„å››å…ƒå¼
-		itQuad->second.result = p->next[1]->next[1]->Attribute["quad"].back();//Mçš„quadå±æ€§å€¼å›å¡«åˆ°Q1çš„trueçš„result
+		//»ØÌî
+		itQuad = Quadruples.find(p->next[0]->Attribute["false"].back());//Z1µÄfalseµÄËÄÔªÊ½
+		itQuad->second.result = p->next[1]->next[1]->Attribute["quad"].back();//MµÄquadÊôĞÔÖµ»ØÌîµ½Q1µÄtrueµÄresult
 
 	}
 
@@ -1398,21 +1398,21 @@ void R(int pipt) {
 void R1(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 12) {//or
 		ptree t1 = new tree;
 		t1->data = "or";
 		p->next[pip++] = t1;
-		cout << "oråŒ¹é…æˆåŠŸ" << endl;
+		cout << "orÆ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
 		t2->data = "M" + to_string(mid++);
 		p->next[pip++] = t2;
-		cout << t2->data << "æ·»åŠ æˆåŠŸ" << endl;
+		cout << t2->data << "Ìí¼Ó³É¹¦" << endl;
 		vector<string> v1;
 		v1.push_back(to_string(qid));
-		p->next[1]->Attribute["quad"] = v1;//M.quadä¸ºä¸Šä¸€ä»£ç ç¼–å·çš„ä¸‹ä¸€ä¸ªå€¼
+		p->next[1]->Attribute["quad"] = v1;//M.quadÎªÉÏÒ»´úÂë±àºÅµÄÏÂÒ»¸öÖµ
 
 		ptree t3 = new tree;
 		t3->data = "Z";
@@ -1426,60 +1426,60 @@ void R1(int pipt) {
 		R1(pip - 1);
 		p = t;
 
-		if (p->next[3]->next[0] == NULL) {}//æ­¤èŠ‚ç‚¹ä¸‹R1å­èŠ‚ç‚¹ä¸ºç©º
-		else if (p->next[3]->next[3]->next[0] == NULL) {//æ­¤ä¸‹æ­¤ä¸‹R1å­èŠ‚ç‚¹ä¸ºç©º
+		if (p->next[3]->next[0] == NULL) {}//´Ë½ÚµãÏÂR1×Ó½ÚµãÎª¿Õ
+		else if (p->next[3]->next[3]->next[0] == NULL) {//´ËÏÂ´ËÏÂR1×Ó½ÚµãÎª¿Õ
 
-			//R1.falseçš„æƒ…å†µ
+			//R1.falseµÄÇé¿ö
 			p->Attribute["false"] = p->next[3]->next[2]->Attribute["false"];//R1.false=Z2.false
 
-			//R1.trueçš„æƒ…å†µ
+			//R1.trueµÄÇé¿ö
 			vector<string> v2;
-			vector<string> vt1 = p->next[2]->Attribute["true"];//Z1çš„trueè·³è½¬ä»£ç ç¼–å·å‘é‡
+			vector<string> vt1 = p->next[2]->Attribute["true"];//Z1µÄtrueÌø×ª´úÂë±àºÅÏòÁ¿
 			for (itv = vt1.begin(); itv != vt1.end(); itv++) {
 				v2.push_back(*itv);
 			}
-			vector<string> vt2 = p->next[3]->next[2]->Attribute["true"];//Z2çš„trueè·³è½¬ä»£ç ç¼–å·å‘é‡	
+			vector<string> vt2 = p->next[3]->next[2]->Attribute["true"];//Z2µÄtrueÌø×ª´úÂë±àºÅÏòÁ¿	
 			for (itv = vt2.begin(); itv != vt2.end(); itv++) {
 				v2.push_back(*itv);
 			}
 			p->Attribute["true"] = v2;
 
-			//å›å¡«
-			itQuad = Quadruples.find(p->next[2]->Attribute["false"].back());//Z1çš„falseçš„å››å…ƒå¼
-			itQuad->second.result = p->next[3]->next[1]->Attribute["quad"].back();//Mçš„quadå±æ€§å€¼å›å¡«åˆ°Q1çš„trueçš„result
+			//»ØÌî
+			itQuad = Quadruples.find(p->next[2]->Attribute["false"].back());//Z1µÄfalseµÄËÄÔªÊ½
+			itQuad->second.result = p->next[3]->next[1]->Attribute["quad"].back();//MµÄquadÊôĞÔÖµ»ØÌîµ½Q1µÄtrueµÄresult
 
 
 		}
-		else {//æ­¤ä¸‹æ­¤ä¸‹R1å­èŠ‚ç‚¹ä¸ä¸ºç©º
+		else {//´ËÏÂ´ËÏÂR1×Ó½Úµã²»Îª¿Õ
 
-			//R1.falseçš„æƒ…å†µ
-			p->Attribute["false"] = p->next[3]->Attribute["false"];//ä¸ŠR1.false=ä¸‹R1.false
+			//R1.falseµÄÇé¿ö
+			p->Attribute["false"] = p->next[3]->Attribute["false"];//ÉÏR1.false=ÏÂR1.false
 
-			//R1.trueçš„æƒ…å†µ
+			//R1.trueµÄÇé¿ö
 			vector<string> v2;
-			vector<string> vt1 = p->next[2]->Attribute["true"]; //Z1çš„trueè·³è½¬ä»£ç ç¼–å·å‘é‡
+			vector<string> vt1 = p->next[2]->Attribute["true"]; //Z1µÄtrueÌø×ª´úÂë±àºÅÏòÁ¿
 			for (itv = vt1.begin(); itv != vt1.end(); itv++) {
 				v2.push_back(*itv);
 			}
-			vector<string> vt2 = p->next[3]->Attribute["true"]; //ä¸‹R1çš„trueè·³è½¬ä»£ç ç¼–å·å‘é‡
+			vector<string> vt2 = p->next[3]->Attribute["true"]; //ÏÂR1µÄtrueÌø×ª´úÂë±àºÅÏòÁ¿
 			for (itv = vt2.begin(); itv != vt2.end(); itv++) {
 				v2.push_back(*itv);
 			}
 			p->Attribute["true"] = v2;
 
-			//å›å¡«
-			itQuad = Quadruples.find(p->next[2]->Attribute["false"].back());//Z1çš„falseçš„å››å…ƒå¼
-			itQuad->second.result = p->next[3]->next[1]->Attribute["quad"].back();//Mçš„quadå±æ€§å€¼å›å¡«åˆ°Q1çš„trueçš„result
+			//»ØÌî
+			itQuad = Quadruples.find(p->next[2]->Attribute["false"].back());//Z1µÄfalseµÄËÄÔªÊ½
+			itQuad->second.result = p->next[3]->next[1]->Attribute["quad"].back();//MµÄquadÊôĞÔÖµ»ØÌîµ½Q1µÄtrueµÄresult
 
 		}
 
 	}
 }
 
-void Z(int pipt) {//å¯¹trueå’Œfalseå±æ€§
+void Z(int pipt) {//¶ÔtrueºÍfalseÊôĞÔ
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 
 	ptree t1 = new tree;
 	t1->data = "Q";
@@ -1493,42 +1493,42 @@ void Z(int pipt) {//å¯¹trueå’Œfalseå±æ€§
 	Z1(pip - 1);
 	p = t;
 
-	if (p->next[1]->next[0] == NULL) {//æ­¤ZèŠ‚ç‚¹ä¸‹Z1å­èŠ‚ç‚¹nextä¸ºç©º
+	if (p->next[1]->next[0] == NULL) {//´ËZ½ÚµãÏÂZ1×Ó½ÚµãnextÎª¿Õ
 		p->Attribute["true"] = p->next[0]->Attribute["true"];
 		p->Attribute["false"] = p->next[0]->Attribute["false"];
 	}
-	else if(p->next[1]->next[3]->next[0]==NULL){//æ­¤ZèŠ‚ç‚¹ä¸‹æ­¤ä¸‹Z1å­èŠ‚ç‚¹nextä¸ºç©º
+	else if(p->next[1]->next[3]->next[0]==NULL){//´ËZ½ÚµãÏÂ´ËÏÂZ1×Ó½ÚµãnextÎª¿Õ
 		
-		//Z.trueçš„æƒ…å†µ
+		//Z.trueµÄÇé¿ö
 		p->Attribute["true"] = p->next[1]->next[2]->Attribute["true"];//Z.true=Q2.true
 
-		//Z.falseçš„æƒ…å†µ
+		//Z.falseµÄÇé¿ö
 		vector<string> v1;
-		v1.push_back(p->next[0]->Attribute["false"].back());//Q1çš„falseè·³è½¬ä»£ç ç¼–å·
-		v1.push_back(p->next[1]->next[2]->Attribute["false"].back());//Q2çš„falseè·³è½¬ä»£ç ç¼–å·
+		v1.push_back(p->next[0]->Attribute["false"].back());//Q1µÄfalseÌø×ª´úÂë±àºÅ
+		v1.push_back(p->next[1]->next[2]->Attribute["false"].back());//Q2µÄfalseÌø×ª´úÂë±àºÅ
 		p->Attribute["false"] = v1;
 
-		//å›å¡«
-		itQuad = Quadruples.find(p->next[0]->Attribute["true"].back());//Q1çš„trueçš„å››å…ƒå¼
-		itQuad->second.result = p->next[1]->next[1]->Attribute["quad"].back();//Mçš„quadå±æ€§å€¼å›å¡«åˆ°Q1çš„trueçš„result
+		//»ØÌî
+		itQuad = Quadruples.find(p->next[0]->Attribute["true"].back());//Q1µÄtrueµÄËÄÔªÊ½
+		itQuad->second.result = p->next[1]->next[1]->Attribute["quad"].back();//MµÄquadÊôĞÔÖµ»ØÌîµ½Q1µÄtrueµÄresult
 
 	}
 	else {
-		//Z.trueçš„æƒ…å†µ
+		//Z.trueµÄÇé¿ö
 		p->Attribute["true"] = p->next[1]->Attribute["true"];//Z.true=Z1.true
 
-		//Z.falseçš„æƒ…å†µ
+		//Z.falseµÄÇé¿ö
 		vector<string> v2;
-		v2.push_back(p->next[0]->Attribute["false"].back());//Q1çš„falseè·³è½¬ä»£ç ç¼–å·
-		vector<string> vt = p->next[1]->Attribute["false"]; //Z1çš„falseè·³è½¬ä»£ç ç¼–å·å‘é‡
+		v2.push_back(p->next[0]->Attribute["false"].back());//Q1µÄfalseÌø×ª´úÂë±àºÅ
+		vector<string> vt = p->next[1]->Attribute["false"]; //Z1µÄfalseÌø×ª´úÂë±àºÅÏòÁ¿
 		for (itv = vt.begin(); itv != vt.end(); itv++) {
 			v2.push_back(*itv);
 		}
 		p->Attribute["false"] = v2;
 
-		//å›å¡«
-		itQuad = Quadruples.find(p->next[0]->Attribute["true"].back());//Q1çš„trueçš„å››å…ƒå¼
-		itQuad->second.result = p->next[1]->next[1]->Attribute["quad"].back();//Mçš„quadå±æ€§å€¼å›å¡«åˆ°Q1çš„trueçš„result
+		//»ØÌî
+		itQuad = Quadruples.find(p->next[0]->Attribute["true"].back());//Q1µÄtrueµÄËÄÔªÊ½
+		itQuad->second.result = p->next[1]->next[1]->Attribute["quad"].back();//MµÄquadÊôĞÔÖµ»ØÌîµ½Q1µÄtrueµÄresult
 
 	}
 
@@ -1537,21 +1537,21 @@ void Z(int pipt) {//å¯¹trueå’Œfalseå±æ€§
 void Z1(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 13) {//and
 		ptree t1 = new tree;
 		t1->data = "and";
 		p->next[pip++] = t1;
-		cout << "andåŒ¹é…æˆåŠŸ" << endl;
+		cout << "andÆ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
 		t2->data = "M" + to_string(mid++);
 		p->next[pip++] = t2;
-		cout << t2->data << "æ·»åŠ æˆåŠŸ" << endl; 
+		cout << t2->data << "Ìí¼Ó³É¹¦" << endl; 
 		vector<string> v1;
 		v1.push_back(to_string(qid));
-		p->next[1]->Attribute["quad"] = v1;//M.quadä¸ºä¸Šä¸€ä»£ç ç¼–å·çš„ä¸‹ä¸€ä¸ªå€¼
+		p->next[1]->Attribute["quad"] = v1;//M.quadÎªÉÏÒ»´úÂë±àºÅµÄÏÂÒ»¸öÖµ
 
 		ptree t3 = new tree;
 		t3->data = "Q";
@@ -1567,44 +1567,44 @@ void Z1(int pipt) {
 
 
 		
-		if (p->next[3]->next[0] == NULL) {}//æ­¤èŠ‚ç‚¹ä¸‹Z1å­èŠ‚ç‚¹ä¸ºç©º}
-		else if(p->next[3]->next[3]->next[0]==NULL){//æ­¤ä¸‹æ­¤ä¸‹Z1å­èŠ‚ç‚¹ä¸ºç©º
+		if (p->next[3]->next[0] == NULL) {}//´Ë½ÚµãÏÂZ1×Ó½ÚµãÎª¿Õ}
+		else if(p->next[3]->next[3]->next[0]==NULL){//´ËÏÂ´ËÏÂZ1×Ó½ÚµãÎª¿Õ
 			
-			//Z1.trueçš„æƒ…å†µ
+			//Z1.trueµÄÇé¿ö
 			p->Attribute["true"] = p->next[3]->next[2]->Attribute["true"];//Z1.true=Q2.true
 
-			//Z1.falseçš„æƒ…å†µ
-			//å»ºé“¾,æ›´æ”¹å››å…ƒå¼çš„å€¼ï¼ˆæ”¾å¼ƒï¼‰
-			//itQuad = Quadruples.find(p->next[3]->next[2]->Attribute["false"].back());//Q2çš„falseçš„å››å…ƒå¼
-			//itQuad->second.result = p->next[2]->Attribute["false"];//Q1çš„falseçš„å››å…ƒå¼ç¼–å·ä¸Q2çš„falseé“¾æ¥
+			//Z1.falseµÄÇé¿ö
+			//½¨Á´,¸ü¸ÄËÄÔªÊ½µÄÖµ£¨·ÅÆú£©
+			//itQuad = Quadruples.find(p->next[3]->next[2]->Attribute["false"].back());//Q2µÄfalseµÄËÄÔªÊ½
+			//itQuad->second.result = p->next[2]->Attribute["false"];//Q1µÄfalseµÄËÄÔªÊ½±àºÅÓëQ2µÄfalseÁ´½Ó
 			vector<string> v2;
-			v2.push_back(p->next[2]->Attribute["false"].back());//Q1çš„falseè·³è½¬ä»£ç ç¼–å·
-			v2.push_back(p->next[3]->next[2]->Attribute["false"].back());//Q2çš„falseè·³è½¬ä»£ç ç¼–å·
+			v2.push_back(p->next[2]->Attribute["false"].back());//Q1µÄfalseÌø×ª´úÂë±àºÅ
+			v2.push_back(p->next[3]->next[2]->Attribute["false"].back());//Q2µÄfalseÌø×ª´úÂë±àºÅ
 			p->Attribute["false"] = v2;
 			
-			//å›å¡«å’Œå»ºé“¾ä¼šè®©å››å…ƒå¼çš„resultå€¼å†²çªï¼Œè¿™é‡Œé€‰æ‹©åªå›å¡«åˆ°å››å…ƒå¼
-			itQuad = Quadruples.find(p->next[2]->Attribute["true"].back());//Q1çš„trueçš„å››å…ƒå¼
-			itQuad->second.result = p->next[3]->next[1]->Attribute["quad"].back();//Mçš„quadå±æ€§å€¼å›å¡«åˆ°Q1çš„trueçš„result
+			//»ØÌîºÍ½¨Á´»áÈÃËÄÔªÊ½µÄresultÖµ³åÍ»£¬ÕâÀïÑ¡ÔñÖ»»ØÌîµ½ËÄÔªÊ½
+			itQuad = Quadruples.find(p->next[2]->Attribute["true"].back());//Q1µÄtrueµÄËÄÔªÊ½
+			itQuad->second.result = p->next[3]->next[1]->Attribute["quad"].back();//MµÄquadÊôĞÔÖµ»ØÌîµ½Q1µÄtrueµÄresult
 			
 
 		}
-		else {//æ­¤ä¸‹æ­¤ä¸‹Z1å­èŠ‚ç‚¹ä¸ä¸ºç©º
+		else {//´ËÏÂ´ËÏÂZ1×Ó½Úµã²»Îª¿Õ
 			
-			//Z1.trueçš„æƒ…å†µ
-			p->Attribute["true"] = p->next[3]->Attribute["true"];//ä¸ŠZ1.true=ä¸‹Z1.true
+			//Z1.trueµÄÇé¿ö
+			p->Attribute["true"] = p->next[3]->Attribute["true"];//ÉÏZ1.true=ÏÂZ1.true
 
-			//Z1.falseçš„æƒ…å†µ
+			//Z1.falseµÄÇé¿ö
 			vector<string> v2;
-			v2.push_back(p->next[2]->Attribute["false"].back());//Q1çš„falseè·³è½¬ä»£ç ç¼–å·
-			vector<string> vt = p->next[3]->Attribute["false"]; //ä¸‹Z1çš„falseè·³è½¬ä»£ç ç¼–å·å‘é‡
+			v2.push_back(p->next[2]->Attribute["false"].back());//Q1µÄfalseÌø×ª´úÂë±àºÅ
+			vector<string> vt = p->next[3]->Attribute["false"]; //ÏÂZ1µÄfalseÌø×ª´úÂë±àºÅÏòÁ¿
 			for (itv = vt.begin(); itv != vt.end(); itv++) {
 				v2.push_back(*itv);
 			}
 			p->Attribute["false"] = v2;
 
-			//å›å¡«
-			itQuad = Quadruples.find(p->next[2]->Attribute["true"].back());//Q1çš„trueçš„å››å…ƒå¼
-			itQuad->second.result = p->next[3]->next[1]->Attribute["quad"].back();//Mçš„quadå±æ€§å€¼å›å¡«åˆ°Q1çš„trueçš„result
+			//»ØÌî
+			itQuad = Quadruples.find(p->next[2]->Attribute["true"].back());//Q1µÄtrueµÄËÄÔªÊ½
+			itQuad->second.result = p->next[3]->next[1]->Attribute["quad"].back();//MµÄquadÊôĞÔÖµ»ØÌîµ½Q1µÄtrueµÄresult
 
 		}
 
@@ -1615,13 +1615,13 @@ void Z1(int pipt) {
 void Q(int pipt) {
 	p = p->next[pipt];
 	ptree t = p;
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 
 	if (defSymbol(all[ipp].value, false) || all[ipp].category==40) {
 		ptree t1 = new tree;
 		t1->data = all[ipp].value;
 		p->next[pip++] = t1;
-		cout << all[ipp].value << "åŒ¹é…æˆåŠŸ" << endl;
+		cout << all[ipp].value << "Æ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -1634,15 +1634,15 @@ void Q(int pipt) {
 			ptree t3 = new tree;
 			t3->data = all[ipp].value;
 			p->next[pip++] = t3;
-			cout << all[ipp].value << "åŒ¹é…æˆåŠŸ" << endl;
+			cout << all[ipp].value << "Æ¥Åä³É¹¦" << endl;
 			ipp++;
 		}
 		else {
-			cout << "Qerror1:æ²¡æœ‰å®šä¹‰æ­¤æ ‡è¯†ç¬¦" << endl;
+			cout << "Qerror1:Ã»ÓĞ¶¨Òå´Ë±êÊ¶·û" << endl;
 			return;
 		}
 
-		Quadruple quad1("J" + p->next[1]->next[0]->data, p->next[0]->data, p->next[2]->data);//å…³äºæ¯”è¾ƒçš„å¸ƒå°”å› å­çš„å››å…ƒå¼
+		Quadruple quad1("J" + p->next[1]->next[0]->data, p->next[0]->data, p->next[2]->data);//¹ØÓÚ±È½ÏµÄ²¼¶ûÒò×ÓµÄËÄÔªÊ½
 		Quadruples[to_string(qid++)] = quad1;
 
 		Quadruple quad2("J");
@@ -1660,7 +1660,7 @@ void Q(int pipt) {
 		ptree t1 = new tree;
 		t1->data = "not";
 		p->next[pip++] = t1;
-		cout << "notåŒ¹é…æˆåŠŸ" << endl;
+		cout << "notÆ¥Åä³É¹¦" << endl;
 		ipp++;
 
 		ptree t2 = new tree;
@@ -1673,7 +1673,7 @@ void Q(int pipt) {
 		p->Attribute["false"] = p->next[1]->Attribute["true"];
 	}
 	else {
-		cout << "Qerror2:æ²¡æœ‰å®šä¹‰æ­¤æ ‡è¯†ç¬¦" << endl;
+		cout << "Qerror2:Ã»ÓĞ¶¨Òå´Ë±êÊ¶·û" << endl;
 		return;
 	}
 
@@ -1682,12 +1682,12 @@ void Q(int pipt) {
 
 void W(int pipt) {
 	p = p->next[pipt];
-	int pip = 0;//æœ¬èŠ‚ç‚¹ä¸‹çš„ç›´æ¥å­èŠ‚ç‚¹ä¸‹æ ‡,ç”¨äºæ·»åŠ å­èŠ‚ç‚¹
+	int pip = 0;//±¾½ÚµãÏÂµÄÖ±½Ó×Ó½ÚµãÏÂ±ê,ÓÃÓÚÌí¼Ó×Ó½Úµã
 	if (all[ipp].category == 55) {//<
 		ptree t1 = new tree;
 		t1->data = "<";
 		p->next[pip++] = t1;
-		cout << "<åŒ¹é…æˆåŠŸ" << endl;
+		cout << "<Æ¥Åä³É¹¦" << endl;
 		ipp++;
 		return;
 	}else
@@ -1695,7 +1695,7 @@ void W(int pipt) {
 		ptree t1 = new tree;
 		t1->data = "<=";
 		p->next[pip++] = t1;
-		cout << "<=åŒ¹é…æˆåŠŸ" << endl;
+		cout << "<=Æ¥Åä³É¹¦" << endl;
 		ipp++;
 		return;
 	}else
@@ -1703,7 +1703,7 @@ void W(int pipt) {
 		ptree t1 = new tree;
 		t1->data = ">";
 		p->next[pip++] = t1;
-		cout << ">åŒ¹é…æˆåŠŸ" << endl;
+		cout << ">Æ¥Åä³É¹¦" << endl;
 		ipp++;
 		return;
 	}else
@@ -1711,7 +1711,7 @@ void W(int pipt) {
 		ptree t1 = new tree;
 		t1->data = ">=";
 		p->next[pip++] = t1;
-		cout << ">=åŒ¹é…æˆåŠŸ" << endl;
+		cout << ">=Æ¥Åä³É¹¦" << endl;
 		ipp++;
 		return;
 	}else
@@ -1719,7 +1719,7 @@ void W(int pipt) {
 		ptree t1 = new tree;
 		t1->data = "==";
 		p->next[pip++] = t1;
-		cout << "==åŒ¹é…æˆåŠŸ" << endl;
+		cout << "==Æ¥Åä³É¹¦" << endl;
 		ipp++;
 		return;
 	}else
@@ -1727,7 +1727,7 @@ void W(int pipt) {
 		ptree t1 = new tree;
 		t1->data = "!=";
 		p->next[pip++] = t1;
-		cout << "!=åŒ¹é…æˆåŠŸ" << endl;
+		cout << "!=Æ¥Åä³É¹¦" << endl;
 		ipp++;
 		return;
 	}
@@ -1737,55 +1737,243 @@ void W(int pipt) {
 }
 
 
+//Ä¿±ê´úÂëÉú³É
+map<string, string> Rvalue;//¼Ä´æÆ÷ÃèÊöÊı×é///Ê²Ã´¼Ä´æÆ÷´æ´¢Ê²Ã´Êı¾İ//AX:T1
+map<string, string>::iterator itReg;
+map<string, string> Code;//¼ü£ºMOV  Öµ£ºAX,X|| JG A' 
+map<string, string>::iterator itCode;
+int cid = 0;
+map<string, string> Avalue;//±äÁ¿µØÖ·ÃèÊöÊı×é///Ê²Ã´Êı¾İÔÚÊ²Ã´Î»ÖÃÖĞ´æ´¢//T1:AX
+map<string, string>::iterator itAv;
+
+/// <summary>
+/// ·µ»ØÎ´Ê¹ÓÃ¼Ä´æÆ÷
+/// </summary>
+/// <returns>·µ»Ø¼Ä´æÆ÷Ãû</returns>
+string reEmptyReg() {
+	for (itReg = Rvalue.begin(); itReg != Rvalue.end(); itReg++) {
+		if (itReg->second == "") {
+			return itReg->first;
+		}
+	}
+}
+
+void rstReg(string T) {//½«´æ´¢Ö¸¶¨ÔªËØµÄ¼Ä´æÆ÷ÖÃ¿Õ
+	for (itReg = Rvalue.begin(); itReg != Rvalue.end(); itReg++) {
+		if (itReg->second == T) {
+			itReg->second = "";
+			return;
+		}
+	}
+}
+
+
+void generateCode() {//Éú³ÉÄ¿±ê´úÂë
+	Rvalue["AX"] = "";//³õÊ¼»¯¼Ä´æÆ÷
+	Rvalue["BX"] = "";
+	string reg;
+
+	for (itQuad = Quadruples.begin(); itQuad != Quadruples.end(); itQuad++) {
+		if (itQuad->second.opcode == "+") {
+			/// ¢Ù   opcode: +    soperand: a    doperand: b     result:T1
+			/// ¢Ú   opcode: +    soperand: T1    doperand: b     result:T2
+			/// ¢Û   opcode: +    soperand: a    doperand: T2     result:T3
+			/// ¢Ü   opcode: +    soperand: T3    doperand: T4     result:T5
+			 
+			if (itQuad->second.opcode[0] == 'T') {//¢Ú¢Ü
+				//¢Üopcode: +    soperand: T3    doperand: T4     result:T5
+				if (itQuad->second.doperand[0] == 'T') {
+
+				}
+				else {//¢Úopcode: +    soperand: T1    doperand: b     result:T2
+
+				}
+
+
+			}
+			else {//¢Ù¢Û
+				//¢Ûopcode: +    soperand: a    doperand: T2     result:T3
+				if (itQuad->second.doperand[0] == 'T') {
+					
+
+				}
+				else {//¢Ùopcode: +    soperand: a    doperand: b     result:T1
+					reg = reEmptyReg();
+					if (reg != "") {//ÓĞÎ´±»Ê¹ÓÃµÄ¼Ä´æÆ÷
+						//a·ÅÈëreg¼Ä´æÆ÷ÖĞ//Éú³ÉMOV XX,a 
+						Rvalue[reg] = itQuad->second.soperand;
+						Code[to_string(cid++)] = "MOV "+reg + "," + itQuad->second.soperand;
+
+						//Ïà¼Ó//Éú³ÉADD XX£¬b
+						Code[to_string(cid++)] = "ADD "+ reg + "," + itQuad->second.doperand;
+
+						//result½á¹ûT1·ÅÈëXX¼Ä´æÆ÷ÖĞ£¬ĞŞ¸ÄRvalue,Avalue
+						Rvalue[reg] = itQuad->second.result;
+						Avalue[itQuad->second.result] = reg;
+
+					}
+					else {//ÒÑ¾­Ã»ÓĞÎ´±»Ê¹ÓÃµÄ¼Ä´æÆ÷ÁË£¬¾ÍÇÀÓĞ¼ÄÓĞÖ÷´æµÄ×îÔ¶µÄ²ÅÓÃµÄ
+						int far = 150;
+						string farT;
+						for (itReg = Rvalue.begin(); itReg != Rvalue.end(); itReg++) {
+							for (itQuad = Quadruples.begin(); itQuad != Quadruples.end(); itQuad++) {
+								int t = atoi(itQuad->first.c_str());//×Ö·û´®×ªÕûĞÍ
+								if (itReg->second == itQuad->second.soperand) {
+									if (far < t) { 
+										far = t; //¸üĞÂ¾àÀë
+										farT = itReg->second;//¼ÇÂ¼×îÔ¶µÄ±äÁ¿
+									}
+								}
+								if (itReg->second == itQuad->second.doperand) {
+									if (far < t) {
+										far = t;
+										farT = itReg->second;
+									}
+								}
+							}
+						}
+						//XX[farT]ÖÃ¿Õ
+						rstReg(farT);
+						//ÖØĞÂ»ñÈ¡¿ÕÏĞreg
+						reg = reEmptyReg();
+						
+						//AvalueÖĞÉ¾³ıTxÔÚXX¼Ä´æÆ÷ÖĞ
+						Avalue.erase(farT);
+
+						//AvalueÖĞÌí¼ÓTxÔÚTxÖ÷´æÖĞ
+						Avalue[farT] = farT;
+
+						//Éú³ÉMOV Tx,XX
+						Code[to_string(cid++)] = "MOV "+farT + "," + reg;
+
+						//a·ÅÈëreg¼Ä´æÆ÷ÖĞ//Éú³ÉMOV XX,a 
+						Rvalue[reg] = itQuad->second.soperand;
+						
+						Code[to_string(cid++)] = "MOV "+reg + "," + itQuad->second.soperand;
+
+						//Ïà¼Ó//Éú³ÉADD XX£¬b
+						Code[to_string(cid++)] = "ADD "+ reg + "," + itQuad->second.doperand;
+
+						//result½á¹ûT1·ÅÈëXX¼Ä´æÆ÷ÖĞ£¬ĞŞ¸ÄRvalue,Avalue
+						Rvalue[reg] = itQuad->second.result;
+						Avalue[itQuad->second.result] = reg;
+
+					}
+				}
+			}
+		}
+		if (itQuad->second.opcode == "-") {
+
+
+		}
+		if (itQuad->second.opcode == "*") {
+
+
+		}
+		if (itQuad->second.opcode == "/") {
+
+
+		}
+		if (itQuad->second.opcode == "J") {
+
+
+		}
+		if (itQuad->second.opcode == "J<") {
+
+
+		}
+		if (itQuad->second.opcode == "J<=") {
+
+
+		}
+		if (itQuad->second.opcode == "J>") {
+
+
+		}
+		if (itQuad->second.opcode == "J>=") {
+
+
+		}
+		if (itQuad->second.opcode == "J==") {
+
+
+		}
+		if (itQuad->second.opcode == "J!=") {
+
+
+		}
+		if (itQuad->second.opcode == ":=") {
+
+
+		}
+	}
+
+
+
+
+
+
+
+
+}
+
 
 int main() {
-	init_Reserve();//ä¿ç•™å­—è¡¨åˆå§‹åŒ–
-	init_Boundary();//ç•Œç¬¦è¡¨åˆå§‹åŒ–
-	init_Operator();//è¿ç®—ç¬¦è¡¨åˆå§‹åŒ–
-	Symbol.clear();//æ ‡è¯†ç¬¦é›†åˆå§‹åŒ–
-	Digit.clear();//å¸¸æ•°é›†åˆå§‹åŒ–
+	init_Reserve();//±£Áô×Ö±í³õÊ¼»¯
+	init_Boundary();//½ç·û±í³õÊ¼»¯
+	init_Operator();//ÔËËã·û±í³õÊ¼»¯
+	Symbol.clear();//±êÊ¶·û¼¯³õÊ¼»¯
+	Digit.clear();//³£Êı¼¯³õÊ¼»¯
 	index = 0;
 	character = ' ';
 	token = "";
-	cout << "è¯·è¾“å…¥å¾…è¯æ³•åˆ†æçš„æºç¨‹åºä»£ç ï¼šè¾“å…¥#ä»£è¡¨ç»“æŸè¾“å…¥\n" << endl;
-	//æºç¨‹åºä»£ç è¾“å…¥å¤„ç†
+	cout << "ÇëÊäÈë´ı´Ê·¨·ÖÎöµÄÔ´³ÌĞò´úÂë£ºÊäÈë#´ú±í½áÊøÊäÈë\n" << endl;
+	//Ô´³ÌĞò´úÂëÊäÈë´¦Àí
 	while (cin >> in && in[in.size() - 1] != '#') {
 		instr = instr + " " + in;
 	}
-	//è¯†åˆ«äºŒå…ƒç»„åˆå§‹åŒ–
+	//Ê¶±ğ¶şÔª×é³õÊ¼»¯
 	Binary word(0, 0, "-");
-	//å¾ªç¯è¿›è¡Œè¯æ³•åˆ†æç›´åˆ°è¯†åˆ«æ‰€æœ‰å•è¯ç¬¦å·
+	//Ñ­»·½øĞĞ´Ê·¨·ÖÎöÖ±µ½Ê¶±ğËùÓĞµ¥´Ê·ûºÅ
 	while (index < instr.size()) {
 		word = LexAnalyze();
 		all[ip++] = word;
 	}
 	
-	cout << "\n==================åŒ¹é…ç»“æœ==================\n" << endl;
+	cout << "\n==================Æ¥Åä½á¹û==================\n" << endl;
 	Analysis();
 
-	//å±•ç¤ºæ„é€ çš„å„ç§è¯æ±‡è¡¨
-	cout << "\n==================è¯æ±‡è¡¨å±•ç¤º==================\n" << endl;
+	//Õ¹Ê¾¹¹ÔìµÄ¸÷ÖÖ´Ê»ã±í
+	cout << "\n==================´Ê»ã±íÕ¹Ê¾==================\n" << endl;
 	show_table();
 
 	cout << endl;
 	cout << endl;
 
 
-	cout << "\n==================è¯­æ³•æ ‘(å‰åºéå†)==================\n" << endl;
+	cout << "\n==================Óï·¨Ê÷(Ç°Ğò±éÀú)==================\n" << endl;
 	traverse(root);
 
 	cout << endl;
 	cout << endl;
-	cout << "\n==================å››å…ƒå¼é›†==================\n" << endl;
+	cout << "\n==================ËÄÔªÊ½¼¯==================\n" << endl;
 	for (itQuad = Quadruples.begin(); itQuad != Quadruples.end(); itQuad++) {
 		cout << itQuad->first << "   " << itQuad->second << endl;
 	}
 
 	cout << endl;
 	cout << endl;
-	//cout << "------------è¯•éªŒåŒº--------------" << endl;*/
+	cout << "\n==================Ä¿±ê´úÂë==================\n" << endl;
+	generateCode();
+	for (itCode = Code.begin(); itCode != Code.end(); itCode++) {
+		cout << itCode->first <<"\t"<< itCode->second << endl;
+
+	}
+
+
+	//cout << "------------ÊÔÑéÇø--------------" << endl;*/
 	/*int n=10;
-	cout<<to_string(n+1)<<endl;*///intè½¬string
+	cout<<to_string(n+1)<<endl;*///int×ªstring
 	
 	//vector
 	//vector<string> str;
@@ -1799,7 +1987,3 @@ int main() {
 	//}
 	return 0;
 }
-
-
-
-
