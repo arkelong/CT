@@ -1,0 +1,2799 @@
+测试用例01
+main(){
+var
+a,b:integer;c:real;
+if
+a<=b and a!=0
+then
+a:=a-b;
+else
+a:=a+b;
+}
+#
+结果：
+==================匹配结果==================
+
+main()匹配成功
+{匹配成功
+var匹配成功
+a匹配成功
+,匹配成功
+b匹配成功
+:匹配成功
+integer匹配成功
+;匹配成功
+c匹配成功
+:匹配成功
+real匹配成功
+;匹配成功
+if匹配成功
+a匹配成功
+<=匹配成功
+b匹配成功
+and匹配成功
+M0添加成功
+a匹配成功
+!=匹配成功
+0匹配成功
+then匹配成功
+M1添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+-匹配成功
+b匹配成功
+;匹配成功
+M2添加成功
+Herror
+Aerror1
+P遍历完成
+
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+b               39              1
+c               39              2
+
+==================常数表==================
+常量值          类别编码        表中位置
+0               40              0
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+,               属性：
+X               属性：
+b               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+D               属性：inherit: real
+X               属性：type: real
+c               属性：
+X1              属性：
+:               属性：
+Y               属性：type: real
+real            属性：
+;               属性：
+G               属性：next:
+H               属性：next: 156
+K               属性：next: 151  153
+if              属性：
+R               属性：false: 151  153  true: 152
+Z               属性：false: 151  153  true: 152
+Q               属性：false: 151  true: 150
+a               属性：
+W               属性：
+<=              属性：
+b               属性：
+Z1              属性：
+and             属性：
+M0              属性：quad: 152
+Q               属性：false: 153  true: 152
+a               属性：
+W               属性：
+!=              属性：
+0               属性：
+Z1              属性：
+R1              属性：
+then            属性：
+M1              属性：quad: 154
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T1
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: b
+-               属性：
+T               属性：place: b
+F               属性：place: b
+b               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M2              属性：quad: 156
+G               属性：next:
+H               属性：next:
+
+
+
+==================四元式集==================
+
+150   opcode: J<=    soperand: a    doperand: b     result:152
+151   opcode: J    soperand: _    doperand: _     result:0
+152   opcode: J!=    soperand: a    doperand: 0     result:154
+153   opcode: J    soperand: _    doperand: _     result:0
+154   opcode: -    soperand: a    doperand: b     result:T1
+155   opcode: :=    soperand: T1    doperand: _     result:a
+
+
+
+
+测试用例02
+main(){
+var
+a,b:integer;c:real;
+while
+a<b
+do
+if
+a<b
+then
+a:=a+b
+else
+a:=a+b
+}
+#
+结果：
+==================匹配结果==================
+
+main()匹配成功
+{匹配成功
+var匹配成功
+a匹配成功
+,匹配成功
+b匹配成功
+:匹配成功
+integer匹配成功
+;匹配成功
+c匹配成功
+:匹配成功
+real匹配成功
+;匹配成功
+while匹配成功
+M0添加成功
+a匹配成功
+<匹配成功
+b匹配成功
+do匹配成功
+M1添加成功
+if匹配成功
+a匹配成功
+<匹配成功
+b匹配成功
+then匹配成功
+M2添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
++匹配成功
+b匹配成功
+N0添加成功
+else匹配成功
+M3添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
++匹配成功
+b匹配成功
+}匹配成功
+P遍历完成
+
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+b               39              1
+c               39              2
+
+==================常数表==================
+常量值          类别编码        表中位置
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+,               属性：
+X               属性：
+b               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+D               属性：inherit: real
+X               属性：type: real
+c               属性：
+X1              属性：
+:               属性：
+Y               属性：type: real
+real            属性：
+;               属性：
+G               属性：next: 151
+H               属性：next: 151
+L               属性：next: 151
+while           属性：
+M0              属性：quad: 150
+R               属性：false: 151  true: 150
+Z               属性：false: 151  true: 150
+Q               属性：false: 151  true: 150
+a               属性：
+W               属性：
+<               属性：
+b               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M1              属性：quad: 152
+H               属性：next: 156
+K               属性：next: 156
+if              属性：
+R               属性：false: 153  true: 152
+Z               属性：false: 153  true: 152
+Q               属性：false: 153  true: 152
+a               属性：
+W               属性：
+<               属性：
+b               属性：
+Z1              属性：
+R1              属性：
+then            属性：
+M2              属性：quad: 154
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T1
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: b
++               属性：
+T               属性：place: b
+F               属性：place: b
+b               属性：
+T1              属性：
+E1              属性：
+K1              属性：
+N0              属性：next: 156
+else            属性：
+M3              属性：quad: 157
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T2
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: b
++               属性：
+T               属性：place: b
+F               属性：place: b
+b               属性：
+T1              属性：
+E1              属性：
+}               属性：
+
+
+
+==================四元式集==================
+
+150   opcode: J<    soperand: a    doperand: b     result:152
+151   opcode: J    soperand: _    doperand: _     result:0
+152   opcode: J<    soperand: a    doperand: b     result:154
+153   opcode: J    soperand: _    doperand: _     result:157
+154   opcode: +    soperand: a    doperand: b     result:T1
+155   opcode: :=    soperand: T1    doperand: _     result:a
+156   opcode: J    soperand: _    doperand: _     result:0
+157   opcode: +    soperand: a    doperand: b     result:T2
+158   opcode: :=    soperand: T2    doperand: _     result:a
+159   opcode: J    soperand: _    doperand: _     result:150
+
+
+
+==================目标代码（未完成）==================
+
+0       MOV AX,a
+1       ADD AX,b
+2       MOV BX,a
+3       ADD BX,b
+
+
+
+
+
+测试用例03
+main(){
+var
+a,b:integer;c:real;
+if
+a<b
+then
+while
+a<b
+do
+a:=a+b
+else
+if
+a<b
+then
+a:=a+b
+else
+a:=a-b
+}
+#
+结果：
+==================匹配结果==================
+
+main()匹配成功
+{匹配成功
+var匹配成功
+a匹配成功
+,匹配成功
+b匹配成功
+:匹配成功
+integer匹配成功
+;匹配成功
+c匹配成功
+:匹配成功
+real匹配成功
+;匹配成功
+if匹配成功
+a匹配成功
+<匹配成功
+b匹配成功
+then匹配成功
+M0添加成功
+while匹配成功
+M1添加成功
+a匹配成功
+<匹配成功
+b匹配成功
+do匹配成功
+M2添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
++匹配成功
+b匹配成功
+N0添加成功
+else匹配成功
+M3添加成功
+if匹配成功
+a匹配成功
+<匹配成功
+b匹配成功
+then匹配成功
+M4添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
++匹配成功
+b匹配成功
+N1添加成功
+else匹配成功
+M5添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+-匹配成功
+b匹配成功
+}匹配成功
+P遍历完成
+
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+b               39              1
+c               39              2
+
+==================常数表==================
+常量值          类别编码        表中位置
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+,               属性：
+X               属性：
+b               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+D               属性：inherit: real
+X               属性：type: real
+c               属性：
+X1              属性：
+:               属性：
+Y               属性：type: real
+real            属性：
+;               属性：
+G               属性：next: 153  157  162
+H               属性：next: 153  157  162
+K               属性：next: 153  157  162
+if              属性：
+R               属性：false: 151  true: 150
+Z               属性：false: 151  true: 150
+Q               属性：false: 151  true: 150
+a               属性：
+W               属性：
+<               属性：
+b               属性：
+Z1              属性：
+R1              属性：
+then            属性：
+M0              属性：quad: 152
+H               属性：next: 153
+L               属性：next: 153
+while           属性：
+M1              属性：quad: 152
+R               属性：false: 153  true: 152
+Z               属性：false: 153  true: 152
+Q               属性：false: 153  true: 152
+a               属性：
+W               属性：
+<               属性：
+b               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M2              属性：quad: 154
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T1
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: b
++               属性：
+T               属性：place: b
+F               属性：place: b
+b               属性：
+T1              属性：
+E1              属性：
+K1              属性：
+N0              属性：next: 157
+else            属性：
+M3              属性：quad: 158
+H               属性：next: 162
+K               属性：next: 162
+if              属性：
+R               属性：false: 159  true: 158
+Z               属性：false: 159  true: 158
+Q               属性：false: 159  true: 158
+a               属性：
+W               属性：
+<               属性：
+b               属性：
+Z1              属性：
+R1              属性：
+then            属性：
+M4              属性：quad: 160
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T2
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: b
++               属性：
+T               属性：place: b
+F               属性：place: b
+b               属性：
+T1              属性：
+E1              属性：
+K1              属性：
+N1              属性：next: 162
+else            属性：
+M5              属性：quad: 163
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T3
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: b
+-               属性：
+T               属性：place: b
+F               属性：place: b
+b               属性：
+T1              属性：
+E1              属性：
+}               属性：
+
+
+
+==================四元式集==================
+
+150   opcode: J<    soperand: a    doperand: b     result:152
+151   opcode: J    soperand: _    doperand: _     result:158
+152   opcode: J<    soperand: a    doperand: b     result:154
+153   opcode: J    soperand: _    doperand: _     result:0
+154   opcode: +    soperand: a    doperand: b     result:T1
+155   opcode: :=    soperand: T1    doperand: _     result:a
+156   opcode: J    soperand: _    doperand: _     result:152
+157   opcode: J    soperand: _    doperand: _     result:0
+158   opcode: J<    soperand: a    doperand: b     result:160
+159   opcode: J    soperand: _    doperand: _     result:163
+160   opcode: +    soperand: a    doperand: b     result:T2
+161   opcode: :=    soperand: T2    doperand: _     result:a
+162   opcode: J    soperand: _    doperand: _     result:0
+163   opcode: -    soperand: a    doperand: b     result:T3
+164   opcode: :=    soperand: T3    doperand: _     result:a
+
+
+
+==================目标代码（未完成）==================
+
+0       MOV AX,a
+1       ADD AX,b
+2       MOV BX,a
+3       ADD BX,b
+
+
+
+
+
+测试用例04
+main(){
+var
+a,b:integer;
+if
+a<b and a<=b or a>b and a==b or a>=b or a!=b
+then
+a:=b
+}
+#
+结果：
+==================匹配结果==================
+
+main()匹配成功
+{匹配成功
+var匹配成功
+a匹配成功
+,匹配成功
+b匹配成功
+:匹配成功
+integer匹配成功
+;匹配成功
+if匹配成功
+a匹配成功
+<匹配成功
+b匹配成功
+and匹配成功
+M0添加成功
+a匹配成功
+<=匹配成功
+b匹配成功
+or匹配成功
+M1添加成功
+a匹配成功
+>匹配成功
+b匹配成功
+and匹配成功
+M2添加成功
+a匹配成功
+==匹配成功
+b匹配成功
+or匹配成功
+M3添加成功
+a匹配成功
+>=匹配成功
+b匹配成功
+or匹配成功
+M4添加成功
+a匹配成功
+!=匹配成功
+b匹配成功
+then匹配成功
+M5添加成功
+a匹配成功
+:=匹配成功
+b匹配成功
+}匹配成功
+P遍历完成
+
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+b               39              1
+
+==================常数表==================
+常量值          类别编码        表中位置
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+,               属性：
+X               属性：
+b               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+G               属性：next: 161
+H               属性：next: 161
+K               属性：next: 161
+if              属性：
+R               属性：false: 161  true: 152  156  158  160
+Z               属性：false: 151  153  true: 152
+Q               属性：false: 151  true: 150
+a               属性：
+W               属性：
+<               属性：
+b               属性：
+Z1              属性：
+and             属性：
+M0              属性：quad: 152
+Q               属性：false: 153  true: 152
+a               属性：
+W               属性：
+<=              属性：
+b               属性：
+Z1              属性：
+R1              属性：false: 161  true: 156  158  160
+or              属性：
+M1              属性：quad: 154
+Z               属性：false: 155  157  true: 156
+Q               属性：false: 155  true: 154
+a               属性：
+W               属性：
+>               属性：
+b               属性：
+Z1              属性：
+and             属性：
+M2              属性：quad: 156
+Q               属性：false: 157  true: 156
+a               属性：
+W               属性：
+==              属性：
+b               属性：
+Z1              属性：
+R1              属性：false: 161  true: 158  160
+or              属性：
+M3              属性：quad: 158
+Z               属性：false: 159  true: 158
+Q               属性：false: 159  true: 158
+a               属性：
+W               属性：
+>=              属性：
+b               属性：
+Z1              属性：
+R1              属性：
+or              属性：
+M4              属性：quad: 160
+Z               属性：false: 161  true: 160
+Q               属性：false: 161  true: 160
+a               属性：
+W               属性：
+!=              属性：
+b               属性：
+Z1              属性：
+R1              属性：
+then            属性：
+M5              属性：quad: 162
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: b
+T               属性：place: b
+F               属性：place: b
+b               属性：
+T1              属性：
+E1              属性：
+}               属性：
+
+
+
+==================四元式集==================
+
+150   opcode: J<    soperand: a    doperand: b     result:152
+151   opcode: J    soperand: _    doperand: _     result:0
+152   opcode: J<=    soperand: a    doperand: b     result:0
+153   opcode: J    soperand: _    doperand: _     result:154
+154   opcode: J>    soperand: a    doperand: b     result:156
+155   opcode: J    soperand: _    doperand: _     result:0
+156   opcode: J==    soperand: a    doperand: b     result:0
+157   opcode: J    soperand: _    doperand: _     result:158
+158   opcode: J>=    soperand: a    doperand: b     result:0
+159   opcode: J    soperand: _    doperand: _     result:160
+160   opcode: J!=    soperand: a    doperand: b     result:162
+161   opcode: J    soperand: _    doperand: _     result:0
+162   opcode: :=    soperand: b    doperand: _     result:a
+
+
+
+
+测试用例05
+main(){
+var
+a,b:integer;
+while
+a<b
+do
+if
+a<100
+then
+a:=a+(b*a+a)
+else
+a:=a-(b/a-a)
+}
+#
+结果：
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+b               39              1
+
+==================常数表==================
+常量值          类别编码        表中位置
+100             40              0
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+,               属性：
+X               属性：
+b               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+G               属性：next: 151
+H               属性：next: 151
+L               属性：next: 151
+while           属性：
+M0              属性：quad: 150
+R               属性：false: 151  true: 150
+Z               属性：false: 151  true: 150
+Q               属性：false: 151  true: 150
+a               属性：
+W               属性：
+<               属性：
+b               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M1              属性：quad: 152
+H               属性：next: 158
+K               属性：next: 158
+if              属性：
+R               属性：false: 153  true: 152
+Z               属性：false: 153  true: 152
+Q               属性：false: 153  true: 152
+a               属性：
+W               属性：
+<               属性：
+100             属性：
+Z1              属性：
+R1              属性：
+then            属性：
+M2              属性：quad: 154
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T3
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T2
++               属性：
+T               属性：place: T2
+F               属性：place: T2
+(               属性：
+E               属性：place: T2
+T               属性：place: T1
+F               属性：place: b
+b               属性：
+T1              属性：place: a
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: a
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：
+E1              属性：
+K1              属性：
+N0              属性：next: 158
+else            属性：
+M3              属性：quad: 159
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T6
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T5
+-               属性：
+T               属性：place: T5
+F               属性：place: T5
+(               属性：
+E               属性：place: T5
+T               属性：place: T4
+F               属性：place: b
+b               属性：
+T1              属性：place: a
+/               属性：
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: a
+-               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：
+E1              属性：
+}               属性：
+
+
+
+==================四元式集==================
+
+150   opcode: J<    soperand: a    doperand: b     result:152
+151   opcode: J    soperand: _    doperand: _     result:0
+152   opcode: J<    soperand: a    doperand: 100     result:154
+153   opcode: J    soperand: _    doperand: _     result:159
+154   opcode: *    soperand: b    doperand: a     result:T1
+155   opcode: +    soperand: T1    doperand: a     result:T2
+156   opcode: +    soperand: a    doperand: T2     result:T3
+157   opcode: :=    soperand: T3    doperand: _     result:a
+158   opcode: J    soperand: _    doperand: _     result:0
+159   opcode: /    soperand: b    doperand: a     result:T4
+160   opcode: -    soperand: T4    doperand: a     result:T5
+161   opcode: -    soperand: a    doperand: T5     result:T6
+162   opcode: :=    soperand: T6    doperand: _     result:a
+163   opcode: J    soperand: _    doperand: _     result:150
+
+
+
+==================目标代码（未完成）==================
+
+0       MOV AX,T1
+1       ADD AX,a
+
+
+
+
+
+
+测试用例06
+main(){
+var
+a,b,c,d,e,f,g,w:integer;
+w:=(c-(a+b))/(d*e-(f+g))
+}
+#
+结果：
+==================匹配结果==================
+
+main()匹配成功
+{匹配成功
+var匹配成功
+a匹配成功
+,匹配成功
+b匹配成功
+,匹配成功
+c匹配成功
+,匹配成功
+d匹配成功
+,匹配成功
+e匹配成功
+,匹配成功
+f匹配成功
+,匹配成功
+g匹配成功
+,匹配成功
+w匹配成功
+:匹配成功
+integer匹配成功
+;匹配成功
+w匹配成功
+:=匹配成功
+(匹配成功
+c匹配成功
+-匹配成功
+(匹配成功
+a匹配成功
++匹配成功
+b匹配成功
+)匹配成功
+)匹配成功
+/匹配成功
+(匹配成功
+d匹配成功
+*匹配成功
+e匹配成功
+-匹配成功
+(匹配成功
+f匹配成功
++匹配成功
+g匹配成功
+)匹配成功
+)匹配成功
+}匹配成功
+P遍历完成
+
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+b               39              1
+c               39              2
+d               39              3
+e               39              4
+f               39              5
+g               39              6
+w               39              7
+
+==================常数表==================
+常量值          类别编码        表中位置
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+,               属性：
+X               属性：
+b               属性：
+X1              属性：
+,               属性：
+X               属性：
+c               属性：
+X1              属性：
+,               属性：
+X               属性：
+d               属性：
+X1              属性：
+,               属性：
+X               属性：
+e               属性：
+X1              属性：
+,               属性：
+X               属性：
+f               属性：
+X1              属性：
+,               属性：
+X               属性：
+g               属性：
+X1              属性：
+,               属性：
+X               属性：
+w               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+G               属性：next:
+H               属性：next:
+I               属性：next:
+w               属性：
+:=              属性：
+E               属性：place: T6
+T               属性：place: T6
+F               属性：place: T2
+(               属性：
+E               属性：place: T2
+T               属性：place: c
+F               属性：place: c
+c               属性：
+T1              属性：
+E1              属性：place: T1
+-               属性：
+T               属性：place: T1
+F               属性：place: T1
+(               属性：
+E               属性：place: T1
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: b
++               属性：
+T               属性：place: b
+F               属性：place: b
+b               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：place: T5
+/               属性：
+F               属性：place: T5
+(               属性：
+E               属性：place: T5
+T               属性：place: T3
+F               属性：place: d
+d               属性：
+T1              属性：place: e
+*               属性：
+F               属性：place: e
+e               属性：
+T1              属性：
+E1              属性：place: T4
+-               属性：
+T               属性：place: T4
+F               属性：place: T4
+(               属性：
+E               属性：place: T4
+T               属性：place: f
+F               属性：place: f
+f               属性：
+T1              属性：
+E1              属性：place: g
++               属性：
+T               属性：place: g
+F               属性：place: g
+g               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：
+E1              属性：
+}               属性：
+
+
+
+==================四元式集==================
+
+150   opcode: +    soperand: a    doperand: b     result:T1
+151   opcode: -    soperand: c    doperand: T1     result:T2
+152   opcode: *    soperand: d    doperand: e     result:T3
+153   opcode: +    soperand: f    doperand: g     result:T4
+154   opcode: -    soperand: T3    doperand: T4     result:T5
+155   opcode: /    soperand: T2    doperand: T5     result:T6
+156   opcode: :=    soperand: T6    doperand: _     result:w
+
+
+
+==================目标代码（未完成）==================
+
+0       MOV AX,a
+1       ADD AX,b
+2       MOV BX,f
+3       ADD BX,g
+
+
+
+
+测试用例07
+main(){
+var
+a:integer;
+a:=(((a+a*a)+a+a+a+a*a*a*a)+a+a+a*a*a*a+a+a-a/a/a/a/a-a-a-a)+a+a+a-a-a-a-a*a*a;
+a:=a;
+a:=a;
+a:=a
+}
+#
+结果：
+==================匹配结果==================
+
+main()匹配成功
+{匹配成功
+var匹配成功
+a匹配成功
+:匹配成功
+integer匹配成功
+;匹配成功
+a匹配成功
+:=匹配成功
+(匹配成功
+(匹配成功
+(匹配成功
+a匹配成功
++匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
+)匹配成功
++匹配成功
+a匹配成功
++匹配成功
+a匹配成功
++匹配成功
+a匹配成功
++匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
+)匹配成功
++匹配成功
+a匹配成功
++匹配成功
+a匹配成功
++匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
++匹配成功
+a匹配成功
++匹配成功
+a匹配成功
+-匹配成功
+a匹配成功
+/匹配成功
+a匹配成功
+/匹配成功
+a匹配成功
+/匹配成功
+a匹配成功
+/匹配成功
+a匹配成功
+-匹配成功
+a匹配成功
+-匹配成功
+a匹配成功
+-匹配成功
+a匹配成功
+)匹配成功
++匹配成功
+a匹配成功
++匹配成功
+a匹配成功
++匹配成功
+a匹配成功
+-匹配成功
+a匹配成功
+-匹配成功
+a匹配成功
+-匹配成功
+a匹配成功
+-匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
+*匹配成功
+a匹配成功
+;匹配成功
+M0添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M1添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M2添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+}匹配成功
+P遍历完成
+
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+
+==================常数表==================
+常量值          类别编码        表中位置
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+G               属性：next:
+H               属性：next: 185
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: T34
+T               属性：place: T25
+F               属性：place: T25
+(               属性：
+E               属性：place: T25
+T               属性：place: T9
+F               属性：place: T9
+(               属性：
+E               属性：place: T9
+T               属性：place: T2
+F               属性：place: T2
+(               属性：
+E               属性：place: T2
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T1
++               属性：
+T               属性：place: T1
+F               属性：place: a
+a               属性：
+T1              属性：place: a
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：
+E1              属性：place: T8
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T7
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T6
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T5
++               属性：
+T               属性：place: T5
+F               属性：place: a
+a               属性：
+T1              属性：place: T4
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：place: T3
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：place: a
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：
+E1              属性：place: T24
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T23
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T22
++               属性：
+T               属性：place: T12
+F               属性：place: a
+a               属性：
+T1              属性：place: T11
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：place: T10
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：place: a
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T21
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T20
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T19
+-               属性：
+T               属性：place: T16
+F               属性：place: a
+a               属性：
+T1              属性：place: T15
+/               属性：
+F               属性：place: a
+a               属性：
+T1              属性：place: T14
+/               属性：
+F               属性：place: a
+a               属性：
+T1              属性：place: T13
+/               属性：
+F               属性：place: a
+a               属性：
+T1              属性：place: a
+/               属性：
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T18
+-               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T17
+-               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: a
+-               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+)               属性：
+T1              属性：
+E1              属性：place: T33
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T32
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T31
++               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T30
+-               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T29
+-               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T28
+-               属性：
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：place: T27
+-               属性：
+T               属性：place: T27
+F               属性：place: a
+a               属性：
+T1              属性：place: T26
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：place: a
+*               属性：
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M0              属性：quad: 185
+G               属性：next:
+H               属性：next: 186
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M1              属性：quad: 186
+G               属性：next:
+H               属性：next: 187
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M2              属性：quad: 187
+G               属性：next:
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+}               属性：
+
+
+
+==================四元式集==================
+
+150   opcode: *    soperand: a    doperand: a     result:T1
+151   opcode: +    soperand: a    doperand: T1     result:T2
+152   opcode: *    soperand: a    doperand: a     result:T3
+153   opcode: *    soperand: a    doperand: T3     result:T4
+154   opcode: *    soperand: a    doperand: T4     result:T5
+155   opcode: +    soperand: a    doperand: T5     result:T6
+156   opcode: +    soperand: a    doperand: T6     result:T7
+157   opcode: +    soperand: a    doperand: T7     result:T8
+158   opcode: +    soperand: T2    doperand: T8     result:T9
+159   opcode: *    soperand: a    doperand: a     result:T10
+160   opcode: *    soperand: a    doperand: T10     result:T11
+161   opcode: *    soperand: a    doperand: T11     result:T12
+162   opcode: /    soperand: a    doperand: a     result:T13
+163   opcode: /    soperand: a    doperand: T13     result:T14
+164   opcode: /    soperand: a    doperand: T14     result:T15
+165   opcode: /    soperand: a    doperand: T15     result:T16
+166   opcode: -    soperand: a    doperand: a     result:T17
+167   opcode: -    soperand: a    doperand: T17     result:T18
+168   opcode: -    soperand: T16    doperand: T18     result:T19
+169   opcode: -    soperand: a    doperand: T19     result:T20
+170   opcode: +    soperand: a    doperand: T20     result:T21
+171   opcode: +    soperand: T12    doperand: T21     result:T22
+172   opcode: +    soperand: a    doperand: T22     result:T23
+173   opcode: +    soperand: a    doperand: T23     result:T24
+174   opcode: +    soperand: T9    doperand: T24     result:T25
+175   opcode: *    soperand: a    doperand: a     result:T26
+176   opcode: *    soperand: a    doperand: T26     result:T27
+177   opcode: -    soperand: a    doperand: T27     result:T28
+178   opcode: -    soperand: a    doperand: T28     result:T29
+179   opcode: -    soperand: a    doperand: T29     result:T30
+180   opcode: -    soperand: a    doperand: T30     result:T31
+181   opcode: +    soperand: a    doperand: T31     result:T32
+182   opcode: +    soperand: a    doperand: T32     result:T33
+183   opcode: +    soperand: T25    doperand: T33     result:T34
+184   opcode: :=    soperand: T34    doperand: _     result:a
+185   opcode: :=    soperand: a    doperand: _     result:a
+186   opcode: :=    soperand: a    doperand: _     result:a
+187   opcode: :=    soperand: a    doperand: _     result:a
+
+
+
+==================目标代码（未完成）==================
+
+
+
+
+
+测试用例08
+main(){
+var
+a:integer;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a;
+a:=a
+}
+#
+结果：
+==================匹配结果==================
+
+main()匹配成功
+{匹配成功
+var匹配成功
+a匹配成功
+:匹配成功
+integer匹配成功
+;匹配成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M0添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M1添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M2添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M3添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M4添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M5添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M6添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M7添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M8添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M9添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M10添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M11添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M12添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M13添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M14添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M15添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M16添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M17添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M18添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+;匹配成功
+M19添加成功
+a匹配成功
+:=匹配成功
+a匹配成功
+}匹配成功
+P遍历完成
+
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+
+==================常数表==================
+常量值          类别编码        表中位置
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+G               属性：next:
+H               属性：next: 151
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M0              属性：quad: 151
+G               属性：next:
+H               属性：next: 152
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M1              属性：quad: 152
+G               属性：next:
+H               属性：next: 153
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M2              属性：quad: 153
+G               属性：next:
+H               属性：next: 154
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M3              属性：quad: 154
+G               属性：next:
+H               属性：next: 155
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M4              属性：quad: 155
+G               属性：next:
+H               属性：next: 156
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M5              属性：quad: 156
+G               属性：next:
+H               属性：next: 157
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M6              属性：quad: 157
+G               属性：next:
+H               属性：next: 158
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M7              属性：quad: 158
+G               属性：next:
+H               属性：next: 159
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M8              属性：quad: 159
+G               属性：next:
+H               属性：next: 160
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M9              属性：quad: 160
+G               属性：next:
+H               属性：next: 161
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M10             属性：quad: 161
+G               属性：next:
+H               属性：next: 162
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M11             属性：quad: 162
+G               属性：next:
+H               属性：next: 163
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M12             属性：quad: 163
+G               属性：next:
+H               属性：next: 164
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M13             属性：quad: 164
+G               属性：next:
+H               属性：next: 165
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M14             属性：quad: 165
+G               属性：next:
+H               属性：next: 166
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M15             属性：quad: 166
+G               属性：next:
+H               属性：next: 167
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M16             属性：quad: 167
+G               属性：next:
+H               属性：next: 168
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M17             属性：quad: 168
+G               属性：next:
+H               属性：next: 169
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M18             属性：quad: 169
+G               属性：next:
+H               属性：next: 170
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+;               属性：
+M19             属性：quad: 170
+G               属性：next:
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: a
+T               属性：place: a
+F               属性：place: a
+a               属性：
+T1              属性：
+E1              属性：
+}               属性：
+
+
+
+==================四元式集==================
+
+150   opcode: :=    soperand: a    doperand: _     result:a
+151   opcode: :=    soperand: a    doperand: _     result:a
+152   opcode: :=    soperand: a    doperand: _     result:a
+153   opcode: :=    soperand: a    doperand: _     result:a
+154   opcode: :=    soperand: a    doperand: _     result:a
+155   opcode: :=    soperand: a    doperand: _     result:a
+156   opcode: :=    soperand: a    doperand: _     result:a
+157   opcode: :=    soperand: a    doperand: _     result:a
+158   opcode: :=    soperand: a    doperand: _     result:a
+159   opcode: :=    soperand: a    doperand: _     result:a
+160   opcode: :=    soperand: a    doperand: _     result:a
+161   opcode: :=    soperand: a    doperand: _     result:a
+162   opcode: :=    soperand: a    doperand: _     result:a
+163   opcode: :=    soperand: a    doperand: _     result:a
+164   opcode: :=    soperand: a    doperand: _     result:a
+165   opcode: :=    soperand: a    doperand: _     result:a
+166   opcode: :=    soperand: a    doperand: _     result:a
+167   opcode: :=    soperand: a    doperand: _     result:a
+168   opcode: :=    soperand: a    doperand: _     result:a
+169   opcode: :=    soperand: a    doperand: _     result:a
+170   opcode: :=    soperand: a    doperand: _     result:a
+
+
+
+==================目标代码（未完成）==================
+
+
+
+
+
+
+测试用例09
+main(){
+var
+a:integer;
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+while
+a<a
+do
+a:=100
+}
+#
+结果：
+==================匹配结果==================
+
+main()匹配成功
+{匹配成功
+var匹配成功
+a匹配成功
+:匹配成功
+integer匹配成功
+;匹配成功
+while匹配成功
+M0添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M1添加成功
+while匹配成功
+M2添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M3添加成功
+while匹配成功
+M4添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M5添加成功
+while匹配成功
+M6添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M7添加成功
+while匹配成功
+M8添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M9添加成功
+while匹配成功
+M10添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M11添加成功
+while匹配成功
+M12添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M13添加成功
+while匹配成功
+M14添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M15添加成功
+while匹配成功
+M16添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M17添加成功
+while匹配成功
+M18添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M19添加成功
+while匹配成功
+M20添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M21添加成功
+while匹配成功
+M22添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M23添加成功
+while匹配成功
+M24添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M25添加成功
+while匹配成功
+M26添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M27添加成功
+while匹配成功
+M28添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M29添加成功
+while匹配成功
+M30添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M31添加成功
+while匹配成功
+M32添加成功
+a匹配成功
+<匹配成功
+a匹配成功
+do匹配成功
+M33添加成功
+a匹配成功
+:=匹配成功
+100匹配成功
+}匹配成功
+P遍历完成
+
+==================词汇表展示==================
+
+
+==================标识符==================
+标识符          类别编码        表中位置
+a               39              0
+
+==================常数表==================
+常量值          类别编码        表中位置
+100             40              0
+
+
+
+==================语法树(前序遍历)==================
+
+P               属性：
+main()          属性：
+A               属性：
+{               属性：
+B               属性：
+var             属性：
+D               属性：inherit: integer
+X               属性：type: integer
+a               属性：
+X1              属性：
+:               属性：
+Y               属性：type: integer
+integer         属性：
+;               属性：
+G               属性：next: 151
+H               属性：next: 151
+L               属性：next: 151
+while           属性：
+M0              属性：quad: 150
+R               属性：false: 151  true: 150
+Z               属性：false: 151  true: 150
+Q               属性：false: 151  true: 150
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M1              属性：quad: 152
+H               属性：next: 153
+L               属性：next: 153
+while           属性：
+M2              属性：quad: 152
+R               属性：false: 153  true: 152
+Z               属性：false: 153  true: 152
+Q               属性：false: 153  true: 152
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M3              属性：quad: 154
+H               属性：next: 155
+L               属性：next: 155
+while           属性：
+M4              属性：quad: 154
+R               属性：false: 155  true: 154
+Z               属性：false: 155  true: 154
+Q               属性：false: 155  true: 154
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M5              属性：quad: 156
+H               属性：next: 157
+L               属性：next: 157
+while           属性：
+M6              属性：quad: 156
+R               属性：false: 157  true: 156
+Z               属性：false: 157  true: 156
+Q               属性：false: 157  true: 156
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M7              属性：quad: 158
+H               属性：next: 159
+L               属性：next: 159
+while           属性：
+M8              属性：quad: 158
+R               属性：false: 159  true: 158
+Z               属性：false: 159  true: 158
+Q               属性：false: 159  true: 158
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M9              属性：quad: 160
+H               属性：next: 161
+L               属性：next: 161
+while           属性：
+M10             属性：quad: 160
+R               属性：false: 161  true: 160
+Z               属性：false: 161  true: 160
+Q               属性：false: 161  true: 160
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M11             属性：quad: 162
+H               属性：next: 163
+L               属性：next: 163
+while           属性：
+M12             属性：quad: 162
+R               属性：false: 163  true: 162
+Z               属性：false: 163  true: 162
+Q               属性：false: 163  true: 162
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M13             属性：quad: 164
+H               属性：next: 165
+L               属性：next: 165
+while           属性：
+M14             属性：quad: 164
+R               属性：false: 165  true: 164
+Z               属性：false: 165  true: 164
+Q               属性：false: 165  true: 164
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M15             属性：quad: 166
+H               属性：next: 167
+L               属性：next: 167
+while           属性：
+M16             属性：quad: 166
+R               属性：false: 167  true: 166
+Z               属性：false: 167  true: 166
+Q               属性：false: 167  true: 166
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M17             属性：quad: 168
+H               属性：next: 169
+L               属性：next: 169
+while           属性：
+M18             属性：quad: 168
+R               属性：false: 169  true: 168
+Z               属性：false: 169  true: 168
+Q               属性：false: 169  true: 168
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M19             属性：quad: 170
+H               属性：next: 171
+L               属性：next: 171
+while           属性：
+M20             属性：quad: 170
+R               属性：false: 171  true: 170
+Z               属性：false: 171  true: 170
+Q               属性：false: 171  true: 170
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M21             属性：quad: 172
+H               属性：next: 173
+L               属性：next: 173
+while           属性：
+M22             属性：quad: 172
+R               属性：false: 173  true: 172
+Z               属性：false: 173  true: 172
+Q               属性：false: 173  true: 172
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M23             属性：quad: 174
+H               属性：next: 175
+L               属性：next: 175
+while           属性：
+M24             属性：quad: 174
+R               属性：false: 175  true: 174
+Z               属性：false: 175  true: 174
+Q               属性：false: 175  true: 174
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M25             属性：quad: 176
+H               属性：next: 177
+L               属性：next: 177
+while           属性：
+M26             属性：quad: 176
+R               属性：false: 177  true: 176
+Z               属性：false: 177  true: 176
+Q               属性：false: 177  true: 176
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M27             属性：quad: 178
+H               属性：next: 179
+L               属性：next: 179
+while           属性：
+M28             属性：quad: 178
+R               属性：false: 179  true: 178
+Z               属性：false: 179  true: 178
+Q               属性：false: 179  true: 178
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M29             属性：quad: 180
+H               属性：next: 181
+L               属性：next: 181
+while           属性：
+M30             属性：quad: 180
+R               属性：false: 181  true: 180
+Z               属性：false: 181  true: 180
+Q               属性：false: 181  true: 180
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M31             属性：quad: 182
+H               属性：next: 183
+L               属性：next: 183
+while           属性：
+M32             属性：quad: 182
+R               属性：false: 183  true: 182
+Z               属性：false: 183  true: 182
+Q               属性：false: 183  true: 182
+a               属性：
+W               属性：
+<               属性：
+a               属性：
+Z1              属性：
+R1              属性：
+do              属性：
+M33             属性：quad: 184
+H               属性：next:
+I               属性：next:
+a               属性：
+:=              属性：
+E               属性：place: 100
+T               属性：place: 100
+F               属性：place: 100
+100             属性：
+T1              属性：
+E1              属性：
+}               属性：
+
+
+
+==================四元式集==================
+
+150   opcode: J<    soperand: a    doperand: a     result:152
+151   opcode: J    soperand: _    doperand: _     result:0
+152   opcode: J<    soperand: a    doperand: a     result:154
+153   opcode: J    soperand: _    doperand: _     result:0
+154   opcode: J<    soperand: a    doperand: a     result:156
+155   opcode: J    soperand: _    doperand: _     result:0
+156   opcode: J<    soperand: a    doperand: a     result:158
+157   opcode: J    soperand: _    doperand: _     result:0
+158   opcode: J<    soperand: a    doperand: a     result:160
+159   opcode: J    soperand: _    doperand: _     result:0
+160   opcode: J<    soperand: a    doperand: a     result:162
+161   opcode: J    soperand: _    doperand: _     result:0
+162   opcode: J<    soperand: a    doperand: a     result:164
+163   opcode: J    soperand: _    doperand: _     result:0
+164   opcode: J<    soperand: a    doperand: a     result:166
+165   opcode: J    soperand: _    doperand: _     result:0
+166   opcode: J<    soperand: a    doperand: a     result:168
+167   opcode: J    soperand: _    doperand: _     result:0
+168   opcode: J<    soperand: a    doperand: a     result:170
+169   opcode: J    soperand: _    doperand: _     result:0
+170   opcode: J<    soperand: a    doperand: a     result:172
+171   opcode: J    soperand: _    doperand: _     result:0
+172   opcode: J<    soperand: a    doperand: a     result:174
+173   opcode: J    soperand: _    doperand: _     result:0
+174   opcode: J<    soperand: a    doperand: a     result:176
+175   opcode: J    soperand: _    doperand: _     result:0
+176   opcode: J<    soperand: a    doperand: a     result:178
+177   opcode: J    soperand: _    doperand: _     result:0
+178   opcode: J<    soperand: a    doperand: a     result:180
+179   opcode: J    soperand: _    doperand: _     result:0
+180   opcode: J<    soperand: a    doperand: a     result:182
+181   opcode: J    soperand: _    doperand: _     result:0
+182   opcode: J<    soperand: a    doperand: a     result:184
+183   opcode: J    soperand: _    doperand: _     result:0
+184   opcode: :=    soperand: 100    doperand: _     result:a
+185   opcode: J    soperand: _    doperand: _     result:182
+186   opcode: J    soperand: _    doperand: _     result:180
+187   opcode: J    soperand: _    doperand: _     result:178
+188   opcode: J    soperand: _    doperand: _     result:176
+189   opcode: J    soperand: _    doperand: _     result:174
+190   opcode: J    soperand: _    doperand: _     result:172
+191   opcode: J    soperand: _    doperand: _     result:170
+192   opcode: J    soperand: _    doperand: _     result:168
+193   opcode: J    soperand: _    doperand: _     result:166
+194   opcode: J    soperand: _    doperand: _     result:164
+195   opcode: J    soperand: _    doperand: _     result:162
+196   opcode: J    soperand: _    doperand: _     result:160
+197   opcode: J    soperand: _    doperand: _     result:158
+198   opcode: J    soperand: _    doperand: _     result:156
+199   opcode: J    soperand: _    doperand: _     result:154
+200   opcode: J    soperand: _    doperand: _     result:152
+201   opcode: J    soperand: _    doperand: _     result:150
+
+
+
+==================目标代码（未完成）==================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

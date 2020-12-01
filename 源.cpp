@@ -1676,8 +1676,6 @@ void Q(int pipt) {
 		cout << "Qerror2:没有定义此标识符" << endl;
 		return;
 	}
-
-
 }
 
 void W(int pipt) {
@@ -1963,7 +1961,7 @@ int main() {
 
 	cout << endl;
 	cout << endl;
-	cout << "\n==================目标代码==================\n" << endl;
+	cout << "\n==================目标代码（未完成）==================\n" << endl;
 	generateCode();
 	for (itCode = Code.begin(); itCode != Code.end(); itCode++) {
 		cout << itCode->first <<"\t"<< itCode->second << endl;
